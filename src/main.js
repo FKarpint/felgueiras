@@ -49,8 +49,8 @@ function createQuantityWindow(parentWindow, product) {
   let modal = new BrowserWindow({
     parent: parentWindow, // Define a janela principal como a janela pai
     modal: true,
-    width: 600,
-    height: 400,
+    width: 800,
+    height: 600,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
@@ -149,7 +149,7 @@ function printReceipt(product, quantity, total) {
       </div>
   </body>
   </html>`;
-  const data= moment().format("DD/MM/YYYY HH:mm:ss")
+  const data = moment().format("DD/MM/YYYY HH:mm:ss")
   fs.appendFileSync("registos.csv", `${product.descricao};${quantity};${product.preco};${total};${data}\n`);
 
   receiptWindow.loadURL(`data:text/html;charset=UTF-8,${encodeURIComponent(receiptHtml)}`);
@@ -199,7 +199,7 @@ ipcMain.on('open-quantity-window', (event, product) => {
 ipcMain.on('close-quantity-window', (event) => {
   const webContents = event.sender;
   const window = BrowserWindow.fromWebContents(webContents);
-  if (window) window.close(); // Fechar a janela modal
+  if (window) window.close();
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

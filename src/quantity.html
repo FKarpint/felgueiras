@@ -60,6 +60,7 @@
         </div>
     </div>
 
+    <button id="close-button">Fechar</button>
 
     <script>
         const { ipcRenderer } = require('electron');
@@ -120,6 +121,13 @@
                 }
             });
         });
+
+        const closeButton = document.getElementById('close-button');
+        closeButton.addEventListener('click', () => {
+            ipcRenderer.send('close-quantity-window');
+        });
+
+
     </script>
 
 </body>
