@@ -1,0 +1,52 @@
+[
+    {
+        "botao": "1",
+        "descricao": "Fino",
+        "preco": "1,00"
+    },
+    {
+        "botao": "2",
+        "descricao": "Sumos",
+        "preco": "2,00"
+    },
+    {
+        "botao": "2",
+        "descricao": "Bebidas Brancas",
+        "preco": "4,00"
+    },
+    {
+        "botao": "3",
+        "descricao": "Vinho Copo",
+        "preco": "2,00"
+    },
+    {
+        "botao": "4",
+        "descricao": "Sandes",
+        "preco": "6,00"
+    },
+    {
+        "botao": "5",
+        "descricao": "Outros 1",
+        "preco": "2,00"
+    },
+    {
+        "botao": "6",
+        "descricao": "Outros 2",
+        "preco": "4,00"
+    },
+    {
+        "botao": "7",
+        "descricao": "Garrafa de Vinho",
+        "preco": "10,00"
+    },
+    {
+        "botao": "8",
+        "descricao": "Espumante",
+        "preco": "20,00"
+    },
+    {
+        "botao": "9",
+        "descricao": "Artigo 9",
+        "preco": "2,00"
+    }
+]

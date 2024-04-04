@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Impressão</title>
+    <style>
+        button {
+            padding: 20px 40px;
+            /* Aumenta o espaço interno do botão */
+            font-size: 24px;
+            /* Aumenta o tamanho da fonte */
+            margin: 10px;
+            /* Adiciona espaço ao redor dos botões */
+            cursor: pointer;
+            /* Muda o cursor para indicar que é clicável */
+        }
+
+        button.selected {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Selecione a quantidade</h1>
+    <button id="qty1">1</button>
+    <button id="qty2">2</button>
+    <button id="qty5">5</button>
+    <button id="qty10">10</button>
+    <button id="qty20">20</button>
+    <hr>
+    <h1>Selecione numero de Impressões</h1>
+    <button id="print1">1</button>
+    <button id="print2">2</button>
+    <button id="print5">5</button>
+    <button id="print10">10</button>
+    <button id="print20">20</button>
+
+
+    <script>
+        const { ipcRenderer } = require('electron');
+        let produtoAtual;
+        let quantidadeSelecionada = null;
+        let impressoesSelecionadas = null;
+
+        ipcRenderer.on('product-data', (event, product) => {
+            produtoAtual = product;
+        });
+
+        const botoesQuantidade = document.querySelectorAll('#qty1, #qty2, #qty5, #qty10, #qty20');
+        const botoesImpressao = document.querySelectorAll('#print1, #print2, #print5, #print10, #print20');
+
+        function toggleButtonSelection(button) {
+            if (button.style.backgroundColor === 'green') {
+                button.style.backgroundColor = '';
+                return null;
+            } else {
+                button.style.backgroundColor = 'green';
+                return parseInt(button.textContent);
+            }
+        }
+
+        botoesQuantidade.forEach(button => {
+            button.addEventListener('click', () => {
+                quantidadeSelecionada = toggleButtonSelection(button);
+                // Remover seleção nos outros botões de quantidade
+                botoesQuantidade.forEach(btn => {
+                    if (btn !== button) btn.style.backgroundColor = '';
+                });
+            });
+        });
+
+        botoesImpressao.forEach(button => {
+            button.addEventListener('click', () => {
+                impressoesSelecionadas = toggleButtonSelection(button);
+                // Iniciar impressão se as seleções estiverem completas
+                if (quantidadeSelecionada && impressoesSelecionadas && produtoAtual) {
+                    const precoNumerico = parseFloat(produtoAtual.preco.replace(',', '.'));
+                    const total = precoNumerico * quantidadeSelecionada;
+
+                    // Formatar o total para duas casas decimais e substituir o ponto por vírgula
+                    const totalFormatado = total.toFixed(2).replace('.', ',');
+
+                    for (let i = 0; i < impressoesSelecionadas; i++) {
+
+                        ipcRenderer.send('print-receipt', produtoAtual, quantidadeSelecionada, totalFormatado);
+                    }
+                    ipcRenderer.send('close-quantity-window');
+                }
+                // Remover seleção nos outros botões de impressão
+                botoesImpressao.forEach(btn => {
+                    if (btn !== button) btn.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

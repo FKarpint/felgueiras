@@ -1,0 +1,41 @@
+html,
+body {
+  height: 100%;
+  /* Faz com que o HTML e o body ocupem toda a altura da janela */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  /* Organiza os filhos em uma coluna */
+}
+
+.header {
+  /* Estilos para o cabeçalho, se necessário */
+}
+
+#product-buttons {
+  flex-grow: 1;
+  /* Ocupa todo o espaço vertical restante */
+  display: flex;
+  /* Usa Flexbox */
+  flex-wrap: wrap;
+  /* Permite que os botões ocupem mais de uma linha */
+  gap: 10px;
+  /* Espaço entre os botões */
+  padding: 10px;
+  /* Espaço ao redor dos botões dentro do contêiner */
+  justify-content: space-evenly;
+  /* Distribui o espaço horizontalmente de maneira uniforme */
+  align-items: stretch;
+  /* Estica os itens verticalmente para preencher o contêiner */
+}
+
+#product-buttons button {
+  flex-grow: 1;
+  /* Cresce para ocupar o espaço disponível */
+  flex-basis: calc(33% - 20px);
+  /* Base de crescimento, ajuste conforme o número de botões por linha */
+  /* 33% para 3 botões por linha, 20px para descontar o gap e a margem */
+  height: 100px;
+  /* Altura fixa para os botões */
+}
