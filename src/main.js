@@ -215,7 +215,7 @@ function printSenha(product, quantity, total) {
     margin: '0 0 0 0',
     copies: 1,
     printerName: 'POS-80',
-    timeOutPerLine: 400,
+    timeOutPerLine: 200000,
     //pageSize: { height: 301000, width: 71000 },
     silent: true
   }
