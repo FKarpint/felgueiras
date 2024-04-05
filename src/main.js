@@ -226,13 +226,14 @@ async function printSenha(product, quantity, total) {
   }
 
   const data = [
-    {
+    /*{
       type: 'image',
       path: path.join(__dirname, 'santa.jpg'),
-      position: 'center',                                  // position of image: 'left' | 'center' | 'right'
-      width: '60px',                                           // width of image in px; default: auto
+      position: 'center',
+      width: '60px',
       height: '60px',
     },
+    */
     {
       type: 'text',
       value: 'Felgueiras – Torre de Moncorvo',
