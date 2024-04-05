@@ -218,7 +218,7 @@ async function printSenha(product, quantity, total) {
     width: '170px',               //  width of content body
     margin: '0 0 0 0',            // margin of content body
     copies: 1,                    // Number of copies to print
-    printerName: 'XP-80C',        // printerName: string, check with webContent.getPrinters()
+    printerName: 'POS-80',        // printerName: string, check with webContent.getPrinters()
     timeOutPerLine: 400,
     pageSize: { height: 301000, width: 71000 },  // page size
     silent: true
@@ -227,7 +227,7 @@ async function printSenha(product, quantity, total) {
  const data = [
     {
       type: 'image',
-      path: path.join(__dirname, 'assets/banner.png'),     // file path
+      path: path.join(__dirname, 'santa.jpg'),     // file path
       position: 'center',                                  // position of image: 'left' | 'center' | 'right'
       width: '60px',                                           // width of image in px; default: auto
       height: '60px',                                          // width of image in px; default: 50 or '50px'
