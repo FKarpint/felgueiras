@@ -94,6 +94,12 @@ function printReceipt(product, quantity, total) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Recibo</title>
       <style>
+      @page {
+        margin-top: 0mm; /* Ajuste a margem superior conforme necessário */
+        margin-left: 0mm;
+        margin-right: 0mm;
+        margin-bottom: 0mm;
+      }
       body {
         height: 100%;
         width: 100%;
@@ -261,7 +267,7 @@ function printSenha(product, quantity, total) {
   ];
 
   PosPrinter.print(data, options)
-    .then(() => { console.log('Impressão concluída');})
+    .then(() => { console.log('Impressão concluída'); })
     .catch((error) => {
       console.error(error);
     });
