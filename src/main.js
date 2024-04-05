@@ -215,7 +215,7 @@ function printSenha(product, quantity, total) {
     margin: '0 0 0 0',
     copies: 1,
     printerName: 'POS-80',
-    timeOutPerLine: 20000,
+    //timeOutPerLine: 20000,
     pageSize: { height: 301000, width: 71000 },
     //silent: true
   }
@@ -263,68 +263,11 @@ function printSenha(product, quantity, total) {
   ];
 
   PosPrinter.print(data, options)
-    .then(() => { })
+    .then(() => { console.log('Impressão concluída');})
     .catch((error) => {
       console.error(error);
     });
 }
-
-/*
-function printReceipt(product, quantity, total) {
-  
-  const options = {
-    preview: false, // false para enviar diretamente para a impressora (true para visualizar antes de imprimir)
-    width: '80mm', // Largura do papel
-    margin: '0 0 0 0',
-    copies: 1,
-    printerName: '', // Nome da impressora; deixe vazio para usar a impressora padrão
-    timeOutPerLine: 400,
-    silent: true
-  };
-
-  const data = [
-    {
-      type: 'image',
-      path: path.join(__dirname, 'santa.jpg'), // Caminho para a imagem
-      position: 'center', // Posição da imagem: 'left', 'center' ou 'right'
-      width: '50%', // Largura da imagem em porcentagem
-      height: '50%' // Altura da imagem em porcentagem
-    },
-    {
-      type: 'text',
-      value: 'Comissão de Festas - Santa Eufêmia 2024\nFelgueiras – Torre de Moncorvo',
-      css: { "text-align": "center", "font-weight": "700", "font-size": "18px" }
-    },
-    {
-      type: 'table',
-      columns: [
-        { value: 'Item', width: '50%', align: 'left' },
-        { value: 'Qtd', width: '25%', align: 'right' },
-        { value: 'Preço', width: '25%', align: 'right' }
-      ],
-      css: { "font-size": "16px" }
-    },
-    {
-      type: 'table',
-      columns: [
-        { value: product.descricao, width: '50%', align: 'left' },
-        { value: quantity.toString(), width: '25%', align: 'right' },
-        { value: product.preco, width: '25%', align: 'right' }
-      ]
-    },
-    {
-      type: 'text',
-      value: `Total: ${total}`,
-      css: { "text-align": "right", "font-weight": "700", "font-size": "18px", "margin-top": "20px" }
-    }
-  ];
-
-  PosPrinter.print(data, options)
-    .then(() => console.log('Impressão bem-sucedida!'))
-    .catch(error => console.error('Falha na impressão:', error));
-   
-}
-*/
 
 ipcMain.on('print-receipt', (event, product, quantity, total) => {
   printReceipt(product, quantity, total);
