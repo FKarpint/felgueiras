@@ -178,10 +178,7 @@ function printReceipt(product, quantity, total) {
       const options = {
         silent: true,
         deviceName: '',
-        marginsType: 1,
-        pageSize: {
-            width: 800
-        }
+        marginsType: 1
       };
 
       console.log('Imprimindo recibo...');
