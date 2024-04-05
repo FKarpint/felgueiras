@@ -209,23 +209,24 @@ function printReceipt(product, quantity, total) {
     margin: '0 0 0 0',
     copies: 1,
     printerName: 'POS-80',
-    timeOutPerLine: 400,
+    timeOutPerLine: 800,
     pageSize: { height: 301000, width: 71000 },
-    //silent: true
+    silent: true
   }
 
   const data = [
     {
       type: 'image',
       path: path.join(__dirname, 'santa.jpg'),
-      position: 'left',
-      width: '60px',
+      position: 'center',                                  // position of image: 'left' | 'center' | 'right'
+      width: '60px',                                           // width of image in px; default: auto
       height: '60px',
     },
     {
       type: 'text',
       value: 'Felgueiras – Torre de Moncorvo',
-      css: { "text-align": "left", "font-size": "12px" }
+      style: `text-align:center;`,
+      css: {"font-weight": "700", "font-size": "18px"}
     },
     {
       type: 'table',
