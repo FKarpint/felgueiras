@@ -93,15 +93,11 @@ function printReceipt(product, quantity, total) {
       <title>Recibo</title>
       <style>
           body {
-              font-family: 'Arial', sans-serif;
-              line-height: 1.2;
-              font-size: 20px;
-              margin: 0;
-              padding: 0;
+            width: 80mm;
+            font-size: 12px; // Tamanho da fonte para impressão
+            line-height: 1.2; // Ajuste a altura da linha para uma leitura mais clara    
           }
-          * {
-          box-sizing: border-box;
-      }
+
           .header {
               display: flex;
               align-items: center;
@@ -110,7 +106,7 @@ function printReceipt(product, quantity, total) {
               margin-bottom: 10px; /* Menos espaço abaixo do cabeçalho */
           }
           .header img {
-              max-height: 80px; /* Reduzir o tamanho da imagem, se necessário */
+              max-height: 100px; /* Reduzir o tamanho da imagem, se necessário */
           }
           .items {
               width: 100%;
@@ -184,8 +180,7 @@ function printReceipt(product, quantity, total) {
         deviceName: '',
         marginsType: 1,
         pageSize: {
-            width: 80000, // Ajuste conforme a largura da impressora de talões
-            height: 60000  // Uma altura maior para testar
+            width: 800
         }
       };
 
