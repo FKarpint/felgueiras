@@ -104,7 +104,6 @@ function printReceipt(product, quantity, total) {
         height: 100%;
         width: 100%;
     }
-
           .header {
               display: flex;
               align-items: center;
@@ -163,7 +162,7 @@ function printReceipt(product, quantity, total) {
 
   receiptWindow.loadURL(`data:text/html;charset=UTF-8,${encodeURIComponent(receiptHtml)}`);
 
-  receiptWindow.webContents.on('did-finish-load', () => {
+  receiptWindow.webContents.on('did-finish-load', async () => {
     if (debug === 1) {
       receiptWindow.webContents.printToPDF({}).then(data => {
         const randomString = generateRandomString(6);
@@ -183,8 +182,9 @@ function printReceipt(product, quantity, total) {
       receiptWindow.show();
     } else {
 
-      //printSenha(product, quantity, total);
+      await printSenha(product, quantity, total);
 
+      /*
       const options = {
         preview: false,
         width: '80mm',
@@ -207,11 +207,12 @@ function printReceipt(product, quantity, total) {
         receiptWindow.close(); // Feche a janela aqui, dentro da callback
         console.log('Fim recibo...');
       });
+      */
     }
   });
 }
 
-function printSenha(product, quantity, total) {
+async function printSenha(product, quantity, total) {
 
   const options = {
     preview: false,
