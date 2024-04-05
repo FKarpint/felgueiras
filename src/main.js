@@ -215,7 +215,7 @@ function printReceipt(product, quantity, total) {
 async function printSenha(product, quantity, total) {
   const options = {
     preview: false,               // Preview in window or print
-    width: '170px',               //  width of content body
+    //width: '170px',               //  width of content body
     margin: '0 0 0 0',            // margin of content body
     copies: 1,                    // Number of copies to print
     printerName: 'POS-80',        // printerName: string, check with webContent.getPrinters()
