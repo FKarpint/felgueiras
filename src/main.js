@@ -177,12 +177,17 @@ function printReceipt(product, quantity, total) {
       receiptWindow.show();
     } else {
 
-      printReceipt(product, quantity, total);
-      /*const options = {
-        silent: true,
-        deviceName: '',
-        margin: 'auto',
-        pageSize: '80mm'
+      //printReceipt(product, quantity, total);
+
+      const options = {
+        preview: true,
+        width: '80mm',
+        margin: '0 0 0 0',
+        copies: 1,
+        printerName: 'POS-80',
+        timeOutPerLine: 800,
+        pageSize: { height: 301000, width: 71000 },
+        silent: true
       };
 
       console.log('Imprimindo recibo...');
@@ -196,7 +201,7 @@ function printReceipt(product, quantity, total) {
         receiptWindow.close(); // Feche a janela aqui, dentro da callback
         console.log('Fim recibo...');
       });
-      */
+
     }
   });
 }
@@ -226,7 +231,7 @@ function printReceipt(product, quantity, total) {
       type: 'text',
       value: 'Felgueiras – Torre de Moncorvo',
       style: `text-align:center;`,
-      css: {"font-weight": "700", "font-size": "18px"}
+      css: { "font-weight": "700", "font-size": "18px" }
     },
     {
       type: 'table',
