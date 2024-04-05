@@ -10,7 +10,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const debug = 0;
+const debug = 2;
 
 const createWindow = () => {
   // Create the browser window.
@@ -75,8 +75,8 @@ function createQuantityWindow(parentWindow, product) {
 
 function printReceipt(product, quantity, total) {
   const receiptWindow = new BrowserWindow({
-    width: 300, // Largura de aproximadamente 80mm em pixels
-    height: 600, // Altura inicial; pode ajustar conforme necessário
+    //width: 300, // Largura de aproximadamente 80mm em pixels
+    //height: 600, // Altura inicial; pode ajustar conforme necessário
     show: false, // Inicialmente não mostrada; será exibida conforme necessário
     webPreferences: {
       nodeIntegration: true,
@@ -177,9 +177,8 @@ function printReceipt(product, quantity, total) {
       receiptWindow.show();
     } else {
 
-      printSenha(product, quantity, total);
+      //printSenha(product, quantity, total);
 
-      /*
       const options = {
         preview: false,
         width: '80mm',
@@ -202,7 +201,6 @@ function printReceipt(product, quantity, total) {
         receiptWindow.close(); // Feche a janela aqui, dentro da callback
         console.log('Fim recibo...');
       });
-      */
     }
   });
 }
@@ -215,7 +213,7 @@ function printSenha(product, quantity, total) {
     margin: '0 0 0 0',
     copies: 1,
     printerName: 'POS-80',
-    timeOutPerLine: 200000,
+    //timeOutPerLine: 2000,
     //pageSize: { height: 301000, width: 71000 },
     silent: true
   }
