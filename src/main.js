@@ -177,8 +177,9 @@ function printReceipt(product, quantity, total) {
       receiptWindow.show();
     } else {
 
-      //printReceipt(product, quantity, total);
+      printSenha(product, quantity, total);
 
+      /*
       const options = {
         preview: false,
         width: '80mm',
@@ -201,7 +202,7 @@ function printReceipt(product, quantity, total) {
         receiptWindow.close(); // Feche a janela aqui, dentro da callback
         console.log('Fim recibo...');
       });
-
+      */
     }
   });
 }
@@ -214,7 +215,7 @@ function printSenha(product, quantity, total) {
     margin: '0 0 0 0',
     copies: 1,
     printerName: 'POS-80',
-    timeOutPerLine: 800,
+    timeOutPerLine: 20000,
     pageSize: { height: 301000, width: 71000 },
     //silent: true
   }
