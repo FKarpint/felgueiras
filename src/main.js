@@ -92,11 +92,10 @@ function printReceipt(product, quantity, total) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Recibo</title>
       <style>
-          body {
-            width: 80mm;
-            font-size: 12px; // Tamanho da fonte para impressão
-            line-height: 1.2; // Ajuste a altura da linha para uma leitura mais clara    
-          }
+      body {
+        height: 100%;
+        width: 100%;
+    }
 
           .header {
               display: flex;
@@ -178,7 +177,8 @@ function printReceipt(product, quantity, total) {
       const options = {
         silent: true,
         deviceName: '',
-        marginsType: 1
+        margin: 'auto',
+        pageSize: '80mm'
       };
 
       console.log('Imprimindo recibo...');
