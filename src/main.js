@@ -267,7 +267,7 @@ async function printSenha(product, quantity, total) {
     }
   ];
 
-  PosPrinter.print(data, options)
+  await PosPrinter.print(data, options)
     .then(() => { console.log('Impressão concluída'); })
     .catch((error) => {
       console.error(error);
