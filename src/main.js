@@ -94,16 +94,19 @@ function printReceipt(product, quantity, total) {
       <style>
           body {
               font-family: 'Arial', sans-serif;
-              line-height: 1.2; /* Linhas mais próximas */
-              font-size: 14px; /* Aumentar o tamanho da fonte */
-              margin: 0; /* Remover margens padrão */
-              padding: 0; /* Remover preenchimento padrão */
+              line-height: 1.2;
+              font-size: 20px;
+              margin: 0;
+              padding: 0;
           }
+          * {
+          box-sizing: border-box;
+      }
           .header {
               display: flex;
               align-items: center;
               justify-content: space-between;
-              font-size: 16px; /* Tamanho da fonte para o cabeçalho */
+              font-size: 30px; /* Tamanho da fonte para o cabeçalho */
               margin-bottom: 10px; /* Menos espaço abaixo do cabeçalho */
           }
           .header img {
@@ -151,7 +154,7 @@ function printReceipt(product, quantity, total) {
   </body>
   </html>
   `;
-  
+
   const data = moment().format("DD/MM/YYYY HH:mm:ss")
   fs.appendFileSync("registos.csv", `${product.descricao};${quantity};${product.preco};${total};${data}\n`);
 
