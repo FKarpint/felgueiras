@@ -180,7 +180,7 @@ function printReceipt(product, quantity, total) {
       //printReceipt(product, quantity, total);
 
       const options = {
-        preview: true,
+        preview: false,
         width: '80mm',
         margin: '0 0 0 0',
         copies: 1,
