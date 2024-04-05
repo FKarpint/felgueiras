@@ -217,7 +217,7 @@ function printSenha(product, quantity, total) {
     printerName: 'POS-80',
     //timeOutPerLine: 20000,
     pageSize: { height: 301000, width: 71000 },
-    //silent: true
+    silent: true
   }
 
   const data = [
