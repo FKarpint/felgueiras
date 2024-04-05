@@ -209,8 +209,8 @@ function printReceipt(product, quantity, total) {
     margin: '0 0 0 0',
     copies: 1,
     printerName: 'POS-80',
-    timeOutPerLine: 400,
-    pageSize: { height: 301000, width: 71000 },
+    //timeOutPerLine: 400,
+    //pageSize: { height: 301000, width: 71000 },
     silent: true
   }
 
