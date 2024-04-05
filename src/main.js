@@ -274,8 +274,9 @@ async function printSenha(product, quantity, total) {
     });
 }
 
-ipcMain.on('print-receipt', (event, product, quantity, total) => {
-  printReceipt(product, quantity, total);
+ipcMain.on('print-receipt', async (event, product, quantity, total) => {
+  //printReceipt(product, quantity, total);
+  await printSenha(product, quantity, total);
 });
 
 ipcMain.on('open-quantity-window', (event, product) => {
