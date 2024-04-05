@@ -182,6 +182,11 @@ function printReceipt(product, quantity, total) {
       const options = {
         silent: true,
         deviceName: '',
+        marginsType: 1,
+        pageSize: {
+            width: 80000, // Ajuste conforme a largura da impressora de talões
+            height: 60000  // Uma altura maior para testar
+        }
       };
 
       console.log('Imprimindo recibo...');
