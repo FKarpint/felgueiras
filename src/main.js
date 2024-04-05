@@ -210,7 +210,8 @@ function printReceipt(product, quantity, total) {
     copies: 1,                    // Number of copies to print
     printerName: 'POS-80',        // printerName: string, check with webContent.getPrinters()
     timeOutPerLine: 400,
-    pageSize: { height: 301000, width: 71000 }  // page size
+    pageSize: { height: 301000, width: 71000 },  // page size
+    silent:true
   }
 
   const data = [
