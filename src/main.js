@@ -10,7 +10,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const debug = 2;
+const debug = 0;
 
 const createWindow = () => {
   // Create the browser window.
