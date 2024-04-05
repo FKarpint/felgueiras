@@ -237,7 +237,7 @@ async function printSenha(product, quantity, total) {
       type: 'text',
       value: 'Felgueiras – Torre de Moncorvo',
       style: `text-align:center;`,
-      css: { "font-weight": "700", "font-size": "18px" }
+      css: {"font-weight": "700", "font-size": "18px"}
     },
     {
       type: 'table',
