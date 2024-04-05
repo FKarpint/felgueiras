@@ -94,30 +94,32 @@ function printReceipt(product, quantity, total) {
       <style>
           body {
               font-family: 'Arial', sans-serif;
-              line-height: 1.6;
+              line-height: 1.2; /* Linhas mais próximas */
+              font-size: 14px; /* Aumentar o tamanho da fonte */
+              margin: 0; /* Remover margens padrão */
+              padding: 0; /* Remover preenchimento padrão */
           }
           .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .header img {
-            max-height: 100px; /* Ajuste conforme necessário */
-        }
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              font-size: 16px; /* Tamanho da fonte para o cabeçalho */
+              margin-bottom: 10px; /* Menos espaço abaixo do cabeçalho */
+          }
+          .header img {
+              max-height: 80px; /* Reduzir o tamanho da imagem, se necessário */
+          }
           .items {
               width: 100%;
               border-collapse: collapse;
           }
           .items th, .items td {
               text-align: left;
-              padding: 8px;
+              padding: 4px; /* Reduzir o preenchimento nas células */
               border-bottom: 1px solid #ddd;
           }
           .total {
-              font-size: 18px;
+              font-size: 16px; /* Tamanho da fonte para o total */
               font-weight: bold;
               text-align: right;
           }
@@ -127,28 +129,29 @@ function printReceipt(product, quantity, total) {
       </style>
   </head>
   <body>
-  <div class="header">
-  <img src="${imageSrc}" alt="">
-  <div>
-      Comissão de Festas - Santa Eufêmia 2024<br>
-      Felgueiras – Torre de Moncorvo
-  </div>
-</div>
-
+      <div class="header">
+          <img src="${imageSrc}" alt="">
+          <div>
+              Comissão de Festas - Santa Eufêmia 2024<br>
+              Felgueiras – Torre de Moncorvo
+          </div>
+      </div>
       <table class="items">
-      <tr>
-          <td colspan="2">${product.descricao}</td>
-      </tr>
-      <tr>
-        <td class="quantity">Quantidade: ${quantity}</td>
-        <td>Preço: ${product.preco}</td>
-      </tr>
+          <tr>
+              <td colspan="2">${product.descricao}</td>
+          </tr>
+          <tr>
+              <td class="quantity">Quantidade: ${quantity}</td>
+              <td>Preço: ${product.preco}</td>
+          </tr>
       </table>
       <div class="total">
           Total: ${total}
       </div>
   </body>
-  </html>`;
+  </html>
+  `;
+  
   const data = moment().format("DD/MM/YYYY HH:mm:ss")
   fs.appendFileSync("registos.csv", `${product.descricao};${quantity};${product.preco};${total};${data}\n`);
 
@@ -175,7 +178,7 @@ function printReceipt(product, quantity, total) {
     } else {
       const options = {
         silent: true,
-        deviceName: '', // Deixe em branco para usar a impressora padrão
+        deviceName: '',
       };
 
       console.log('Imprimindo recibo...');
