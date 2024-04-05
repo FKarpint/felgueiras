@@ -8,7 +8,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const debug = 2;
+const debug = 0;
 
 const createWindow = () => {
   // Create the browser window.
@@ -155,7 +155,7 @@ function printReceipt(product, quantity, total) {
   receiptWindow.loadURL(`data:text/html;charset=UTF-8,${encodeURIComponent(receiptHtml)}`);
 
   receiptWindow.webContents.on('did-finish-load', () => {
-    if (debug == 1) {
+    if (debug === 1) {
       receiptWindow.webContents.printToPDF({}).then(data => {
         const randomString = generateRandomString(6);
         const pdfName = `recibo_${randomString}.pdf`;
@@ -175,13 +175,20 @@ function printReceipt(product, quantity, total) {
     } else {
       const options = {
         silent: true,
-        deviceName: '',
+        deviceName: '', // Deixe em branco para usar a impressora padrão
       };
 
+      console.log('Imprimindo recibo...');
+
       receiptWindow.webContents.print(options, (success, failureReason) => {
-        if (!success) console.log('Falha na impressão:', failureReason);
+        if (!success) {
+          console.log('Falha na impressão:', failureReason);
+        } else {
+          console.log('Recibo impresso com sucesso.');
+        }
+        receiptWindow.close(); // Feche a janela aqui, dentro da callback
+        console.log('Fim recibo...');
       });
-      receiptWindow.close();
     }
   });
 }
