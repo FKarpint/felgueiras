@@ -222,12 +222,10 @@ async function printSenhaOld(product, quantity, total) {
 
   const options = {
     preview: false,
-    width: '80mm',
     margin: '0 0 0 0',
     copies: 1,
     printerName: 'POS-80',
     timeOutPerLine: 400,
-    pageSize: { height: 301000, width: 71000 },
     silent: true
   }
 
@@ -275,7 +273,7 @@ async function printSenhaOld(product, quantity, total) {
 }
 
 //PRINT
-function printSr() {
+async function printSr() {
   console.log("Inside print function");
   const print_data = [
       { type: 'text', value: 'Sample text', style: 'text-align:center;font-weight: bold' },
@@ -286,6 +284,7 @@ function printSr() {
   PosPrinter.print(print_data, {
       printerName: 'POS-80',
       preview: false,
+      timeOutPerLine: 400,
       width: '170px',               //  width of content body
       margin: '0 0 0 0',            // margin of content body
       copies: 1,                   // The number of copies to print
@@ -299,9 +298,9 @@ function printSr() {
 
 
 ipcMain.on('print-receipt', async (event, product, quantity, total) => {
-  printSr();
+  //await printSr();
   //printReceipt(product, quantity, total);
-  //await printSenha(product, quantity, total);
+  await printSenhaOld(product, quantity, total);
 });
 
 ipcMain.on('open-quantity-window', (event, product) => {
