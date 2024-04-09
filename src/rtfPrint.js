@@ -3,7 +3,7 @@ const { spawn } = require('child_process');
 const path = require('path');
 const util = require('util');
 
-novoArquivoRTF = path.resolve(__dirname, './recibo.rtf');
+novoArquivoRTF = path.resolve(__dirname, './senha.rtf');
 
 async function printRTF(produto, quantidade, preco, total) {
   fs.unlink(novoArquivoRTF);
