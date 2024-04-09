@@ -3,14 +3,6 @@ const { spawn } = require('child_process');
 const path = require('path');
 const util = require('util');
 
-const pythonProcess = spawn(
-  'python',
-  [path.resolve(__dirname, './print.py')],
-  {
-    cwd: path.resolve(__dirname, './')
-  },
-);
-
 novoArquivoRTF = path.resolve(__dirname, './recibo.rtf');
 
 async function printRTF(produto, quantidade, preco, total) {
@@ -35,6 +27,13 @@ TOTAL: ${total}\\par
       console.error(err);
       return;
     }
+    const pythonProcess = spawn(
+      'python',
+      [path.resolve(__dirname, './print.py')],
+      {
+        cwd: path.resolve(__dirname, './')
+      },
+    );
     pythonProcess.stdout.on('data', (data) => {
       const textChunk = data.toString('utf8');
 
