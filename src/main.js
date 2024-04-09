@@ -2,12 +2,9 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 const fs = require('fs');
 const moment = require("moment");
-//const { print } = require("pdf-to-printer");
-//const printSenha = require('./pdfPrint');
+const { printRTF } = require('./rtfPrint');
 
-const {PosPrinter} = require("@3ksy/electron-pos-printer");
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
@@ -276,7 +273,7 @@ async function printSenhaOld(product, quantity, total) {
 
 ipcMain.on('print-receipt', async (event, product, quantity, total) => {
   //printReceipt(product, quantity, total);
-  await printSenhaOld(product, quantity, total);
+  await printRTF(product.descricao, quantity, product.preco, total);
 });
 
 ipcMain.on('open-quantity-window', (event, product) => {
