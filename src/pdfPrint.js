@@ -11,6 +11,11 @@ const pythonProcess = spawn(
   },
 );
 
+// Substitua pelos valores reais
+const produto = "Nome do Produto";
+const quantidade = "10";
+const total = "100,00";
+
 // Conteúdo RTF com os marcadores a serem substituídos
 const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Calibri;}}
 {\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 
@@ -24,11 +29,6 @@ _____________________________________\\par
 TOTAL: ${total}\\par
 \\par
 }`;
-
-// Substitua pelos valores reais
-const produto = "Nome do Produto";
-const quantidade = "10";
-const total = "100,00";
 
 const rtfFinal = rtfTemplate
   .replace("${produto}", produto)
