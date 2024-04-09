@@ -1,22 +1,17 @@
 //Required package
-var pdf = require("pdf-creator-node");
 var fs = require("fs");
 const path = require('node:path');
-const { print } = require("pdf-to-printer");
 
-// Read HTML Template
-var html = fs.readFileSync("./src/senha.html", "utf8");
+const filePath = "./src/senha.rtf";
+// Read file Template
+//var file = fs.readFileSync(filePath, "utf8");
+
+const parseRTF = require('rtf-parser');
 
 const imagePath = path.join(__dirname, 'santa.jpg');
 const imageAsBase64 = fs.readFileSync(imagePath, 'base64');
 const imageSrc = `data:image/jpg;base64,${imageAsBase64}`;
 
-var options = {
-  border: "0mm",
-  paperSize:"Custom.80x200mm",
-
-
-};
 
 async function deleteFile(filePath) {
   try {
@@ -29,29 +24,30 @@ async function deleteFile(filePath) {
 
 
 async function printSenha(product, quantity, total) {
-  await deleteFile("./recibo.pdf");
-  var document = {
-    html: html,
-    data: {
-      product,
-      quantity,
-      total,
-      imageSrc
-    },
-    path: "./recibo.pdf",
-    type: "",
+  await deleteFile(filePath);
+
+  const rtfContent = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Calibri;}}
+{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 
+\\pard\\sa200\\sl276\\slmult1\\f0\\fs22\\lang22 Teste de Impress\\'e3o\\par
+FIM\\par
+}`;
+
+  fs.writeFile(filePath, rtfContent, 'utf8', (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log('Arquivo RTF salvo com sucesso!');
+  });
+
+  const printOptions = {
+    printer: "POS-80",
   };
 
-  await pdf.create(document, options).then(async (res) => {
-      console.log(res);
-      const printOptions = {
-        printer: "POS-80",
-      };
-      await print(res.filename, printOptions).then(console.log);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  await print(filePath, printOptions).then(console.log);
+
+
+
 }
 
 module.exports = printSenha;
