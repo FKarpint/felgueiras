@@ -2,9 +2,10 @@
 var pdf = require("pdf-creator-node");
 var fs = require("fs");
 const path = require('node:path');
+const { print } = require("pdf-to-printer");
 
 // Read HTML Template
-var html = fs.readFileSync("senha.html", "utf8");
+var html = fs.readFileSync("./src/senha.html", "utf8");
 
 const imagePath = path.join(__dirname, 'santa.jpg');
 const imageAsBase64 = fs.readFileSync(imagePath, 'base64');
@@ -12,37 +13,32 @@ const imageSrc = `data:image/jpg;base64,${imageAsBase64}`;
 
 var options = {
   border: "0mm",
-  header: {
-    height: "10mm",
-    contents: `<div style="text-align: center;">Comissão de Festas 2024<br>Felgueiras - Torre de Moncorvo</div>`
-  }
 };
 
-var users = [
-  {
-    nome: "Fino",
-    qtd: 1,
-    preco: 5
-  }
-];
-var total = users.qtd * users.preco;
+async function printSenha(product, quantity, total) {
 
-var document = {
-  html: html,
-  data: {
-    users: users,
-    total,
-    imageSrc
-  },
-  path: "./recibo.pdf",
-  type: "",
-};
+  var document = {
+    html: html,
+    data: {
+      product,
+      quantity,
+      total,
+      imageSrc
+    },
+    path: "./recibo.pdf",
+    type: "",
+  };
 
-pdf
-  .create(document, options)
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+  await pdf.create(document, options).then(async (res) => {
+      console.log(res);
+      const printOptions = {
+        printer: "POS-80",
+      };
+      await print(res.filename, printOptions).then(console.log);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+module.exports = printSenha;

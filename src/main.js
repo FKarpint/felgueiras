@@ -3,6 +3,7 @@ const path = require('node:path');
 const fs = require('fs');
 const moment = require("moment");
 const { print } = require("pdf-to-printer");
+const printSenha = require('./pdfPrint');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -215,7 +216,7 @@ function printReceipt(product, quantity, total) {
   });
 }
 
-async function printSenha(product, quantity, total) {
+async function printSenhaOld(product, quantity, total) {
 
   const options = {
     preview: false,
@@ -272,8 +273,8 @@ async function printSenha(product, quantity, total) {
 }
 
 ipcMain.on('print-receipt', async (event, product, quantity, total) => {
-  printReceipt(product, quantity, total);
-  //await printSenha(product, quantity, total);
+  //printReceipt(product, quantity, total);
+  await printSenha(product, quantity, total);
 });
 
 ipcMain.on('open-quantity-window', (event, product) => {
