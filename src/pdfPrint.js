@@ -13,11 +13,14 @@ const imageSrc = `data:image/jpg;base64,${imageAsBase64}`;
 
 var options = {
   border: "0mm",
+  paperSize:"Custom.80x200mm",
+
+
 };
 
 async function deleteFile(filePath) {
   try {
-    await fs.unlink(filePath);
+    fs.unlink(filePath);
     console.log(`File ${filePath} has been deleted.`);
   } catch (err) {
     console.error(err);
@@ -26,7 +29,7 @@ async function deleteFile(filePath) {
 
 
 async function printSenha(product, quantity, total) {
-  deleteFile("./recibo.pdf");
+  await deleteFile("./recibo.pdf");
   var document = {
     html: html,
     data: {
