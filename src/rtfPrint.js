@@ -11,8 +11,10 @@ const pythonProcess = spawn(
   },
 );
 
-async function printRTF(produto, quantidade, preco, total) {
+novoArquivoRTF = path.resolve(__dirname, './recibo.rtf');
 
+async function printRTF(produto, quantidade, preco, total) {
+  fs.unlink(novoArquivoRTF);
   const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Calibri;}}
 {\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 
 \\pard\\sa200\\sl276\\slmult1\\qc\\f0\\fs22\\lang22 Comiss\\'e3o de Festas 2024\\par
