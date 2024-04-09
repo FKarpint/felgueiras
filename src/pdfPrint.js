@@ -15,8 +15,18 @@ var options = {
   border: "0mm",
 };
 
-async function printSenha(product, quantity, total) {
+async function deleteFile(filePath) {
+  try {
+    await fs.unlink(filePath);
+    console.log(`File ${filePath} has been deleted.`);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
+
+async function printSenha(product, quantity, total) {
+  deleteFile("./recibo.pdf");
   var document = {
     html: html,
     data: {
