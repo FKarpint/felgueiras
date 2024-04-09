@@ -2,8 +2,8 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 const fs = require('fs');
 const moment = require("moment");
-const { print } = require("pdf-to-printer");
-const printSenha = require('./pdfPrint');
+//const { print } = require("pdf-to-printer");
+//const printSenha = require('./pdfPrint');
 
 const {PosPrinter} = require("@3ksy/electron-pos-printer");
 
