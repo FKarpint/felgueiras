@@ -1,36 +1,24 @@
-const escpos = require('escpos');
-// install escpos-usb adapter module manually
-escpos.USB = require('escpos-usb');
-// Select the adapter based on your printer type
-const device  = new escpos.USB();
-// const device  = new escpos.Network('localhost');
-// const device  = new escpos.Serial('/dev/usb/lp0');
+const {PosPrinter} = require("@3ksy/electron-pos-printer");
 
-const options = { encoding: "GB18030" /* default */ }
-// encoding is optional
+function printSr() {
+    console.log("Inside print function");
+    const print_data = [
+        { type: 'text', value: 'Sample text', style: 'text-align:center;font-weight: bold' },
+        { type: 'text', value: 'Another text', style: 'color: #fff' },
+    ];
 
-const printer = new escpos.Printer(device, options);
-
-device.open(function(error){
-  printer
-  .font('a')
-  .align('ct')
-  .style('bu')
-  .size(1, 1)
-  .text('The quick brown fox jumps over the lazy dog')
-  .text('敏捷的棕色狐狸跳过懒狗')
-  .barcode('1234567', 'EAN8')
-  .table(["One", "Two", "Three"])
-  .tableCustom(
-    [
-      { text:"Left", align:"LEFT", width:0.33, style: 'B' },
-      { text:"Center", align:"CENTER", width:0.33},
-      { text:"Right", align:"RIGHT", width:0.33 }
-    ],
-    { encoding: 'cp857', size: [1, 1] } // Optional
-  )
-  .qrimage('https://github.com/song940/node-escpos', function(err){
-    this.cut();
-    this.close();
-  });
-});
+    // returns promise<any>
+    PosPrinter.print(print_data, {
+        printerName: 'POS-80C',
+        preview: false,
+        width: '170px',               //  width of content body
+        margin: '0 0 0 0',            // margin of content body
+        copies: 1,                   // The number of copies to print
+    }).then(() => {
+            // some code ...
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+printSr();

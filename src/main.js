@@ -5,6 +5,8 @@ const moment = require("moment");
 const { print } = require("pdf-to-printer");
 const printSenha = require('./pdfPrint');
 
+const {PosPrinter} = require("@3ksy/electron-pos-printer");
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -272,9 +274,34 @@ async function printSenhaOld(product, quantity, total) {
     });
 }
 
+//PRINT
+function printSr() {
+  console.log("Inside print function");
+  const print_data = [
+      { type: 'text', value: 'Sample text', style: 'text-align:center;font-weight: bold' },
+      { type: 'text', value: 'Another text', style: 'color: #fff' },
+  ];
+
+  // returns promise<any>
+  PosPrinter.print(print_data, {
+      printerName: 'POS-80C',
+      preview: false,
+      width: '170px',               //  width of content body
+      margin: '0 0 0 0',            // margin of content body
+      copies: 1,                   // The number of copies to print
+  }).then(() => {
+          // some code ...
+      })
+      .catch((error) => {
+          console.error(error);
+      });
+}
+
+
 ipcMain.on('print-receipt', async (event, product, quantity, total) => {
+  printSr();
   //printReceipt(product, quantity, total);
-  await printSenha(product, quantity, total);
+  //await printSenha(product, quantity, total);
 });
 
 ipcMain.on('open-quantity-window', (event, product) => {
