@@ -284,7 +284,7 @@ function printSr() {
 
   // returns promise<any>
   PosPrinter.print(print_data, {
-      printerName: 'POS-80C',
+      printerName: 'POS-80',
       preview: false,
       width: '170px',               //  width of content body
       margin: '0 0 0 0',            // margin of content body
