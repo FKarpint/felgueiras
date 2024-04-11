@@ -5,7 +5,7 @@ const util = require('util');
 
 novoArquivoRTF = path.resolve(__dirname, './senha.rtf');
 
-async function printRTF(produto, quantidade, preco, total) {
+async function printRTF(produto, quantidade, preco, total, nPrint) {
   try {
     fs.unlinkSync(novoArquivoRTF);
   } catch (err) {
@@ -26,23 +26,26 @@ async function printRTF(produto, quantidade, preco, total) {
   }  
 `;
 
-  awaitfs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8', (err) => {
+  fs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8', (err) => {
     if (err) {
       console.error(err);
       return;
     }
-    const pythonProcess = spawn(
-      'python',
-      [path.resolve(__dirname, './print.py')],
-      {
-        cwd: path.resolve(__dirname, './')
-      },
-    );
-    pythonProcess.stdout.on('data', (data) => {
-      const textChunk = data.toString('utf8');
 
-      util.log(textChunk);
-    });
+    for (let i = 0; i < nPrint; i++) {
+      const pythonProcess = spawn(
+        'python',
+        [path.resolve(__dirname, './print.py')],
+        {
+          cwd: path.resolve(__dirname, './')
+        },
+      );
+      pythonProcess.stdout.on('data', (data) => {
+        const textChunk = data.toString('utf8');
+
+        util.log(textChunk);
+      });
+    }
   });
 }
 

@@ -71,8 +71,8 @@ function createQuantityWindow(parentWindow, product) {
   return modal;
 }
 
-ipcMain.on('print-receipt', async (event, product, quantity, total) => {
-  await printRTF(product.descricao, quantity, product.preco, total);
+ipcMain.on('print-receipt', async (event, product, quantity, total, nPrint) => {
+  await printRTF(product.descricao, quantity, product.preco, total, nPrint);
   const data = moment().format("DD/MM/YYYY HH:mm:ss")
   fs.appendFileSync("registos.csv", `${product.descricao};${quantity};${product.preco};${total};${data}\n`);
 });

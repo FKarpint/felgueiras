@@ -114,9 +114,7 @@
 
                     const totalFormatado = total.toFixed(2).replace('.', ',');
 
-                    for (let i = 0; i < impressoesSelecionadas; i++) {
-                        ipcRenderer.send('print-receipt', produtoAtual, parseInt(quantidadeSelecionada.textContent), totalFormatado);
-                    }
+                    ipcRenderer.send('print-receipt', produtoAtual, parseInt(quantidadeSelecionada.textContent), totalFormatado, parseInt(impressoesSelecionadas.textContent));
                     ipcRenderer.send('close-quantity-window');
                 }
             });
