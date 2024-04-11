@@ -7,8 +7,8 @@ novoArquivoRTF = path.resolve(__dirname, './senha.rtf');
 
 async function printRTF(produto, quantidade, preco, total, nPrint) {
   try {
-    fs.statSync(filePath);
-    fs.unlinkSync(filePath);
+    fs.statSync(novoArquivoRTF);
+    fs.unlinkSync(novoArquivoRTF);
   } catch (error) {
     if (error.code === 'ENOENT') {
       console.log('O arquivo não existe, não é necessário excluí-lo.');
