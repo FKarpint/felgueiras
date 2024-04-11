@@ -77,6 +77,7 @@ ipcMain.on('print-receipt', async (event, products, total, nPrint) => {
   await printRTF(products, total, nPrint);
   const data = moment().format("DD/MM/YYYY HH:mm:ss")
   fs.appendFileSync("registos.csv", products.map(p => `${p.descricao};${p.quantidade};${p.preco};${total};${data}\n`).join(''));
+  mainWindow.webContents.send('receipt-printed');
 });
 
 ipcMain.on('open-quantity-window', (event, product) => {

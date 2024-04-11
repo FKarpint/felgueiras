@@ -4,8 +4,10 @@
   box-sizing: border-box;
 }
 
-body, html {
-  height: 100vh; /* Define a altura total da página para ser a altura da viewport */
+body,
+html {
+  height: 100vh;
+  /* Define a altura total da página para ser a altura da viewport */
   font-family: Arial, sans-serif;
 }
 
@@ -17,19 +19,24 @@ body, html {
 
 .container {
   display: flex;
-  flex-direction: row; /* Coloca os elementos filhos lado a lado horizontalmente */
-  height: calc(100vh - 50px); /* Ajusta a altura para descontar apenas o cabeçalho */
+  flex-direction: row;
+  /* Coloca os elementos filhos lado a lado horizontalmente */
+  height: calc(100vh - 50px);
+  /* Ajusta a altura para descontar apenas o cabeçalho */
 }
 
 .menu-section {
-  flex: 1; /* Ocupa o espaço restante depois de definir o .order-section */
+  flex: 1;
+  /* Ocupa o espaço restante depois de definir o .order-section */
   overflow-y: auto;
   background-color: #f0f0f0;
 }
 
 .order-section {
-  width: 30%; /* Define a largura da seção de pedidos para 30% */
-  height: calc(100vh - 50px); /* Ajusta a altura para ser a mesma do container */
+  width: 30%;
+  /* Define a largura da seção de pedidos para 30% */
+  height: calc(100vh - 50px);
+  /* Ajusta a altura para ser a mesma do container */
   overflow-y: auto;
   background-color: #fff;
   display: flex;
@@ -37,14 +44,89 @@ body, html {
 }
 
 .order-items {
-  flex-grow: 1; /* Permite que a lista de itens cresça para ocupar o espaço disponível */
+  flex-grow: 1;
+  /* Permite que a lista de itens cresça para ocupar o espaço disponível */
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  table-layout: fixed;
+  /* Adicionado para permitir que a largura das colunas seja fixa */
+  border-collapse: collapse;
+}
+
+.order-items tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  height: 50px;
+}
+
+.order-items thead th {
+  text-align: left;
+  /* Alinha o texto à esquerda */
+  border: 1px solid #000;
+}
+
+.order-items td {
+  width: 25%;
+  text-align: left;
+  border: 1px solid #000;
+}
+
+.order-items tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.delete-button {
+  width: 100%;
+  /* Aumenta a largura do botão */
+  height: 100%;
+  /* Aumenta a altura do botão */
 }
 
 .order-total {
-  padding: 10px;
+  padding: 20px;
+  /* Aumente o padding para dar mais espaço */
   background: #fff;
   border-top: 1px solid #ccc;
+  text-align: center;
+  /* Centraliza o conteúdo */
+}
+
+.order-total #total {
+  display: block;
+  /* Faz o span se comportar como um bloco */
+  font-size: 24px;
+  /* Aumenta o tamanho da fonte do total */
+  margin-bottom: 20px;
+  /* Adiciona espaço entre o texto do total e o botão */
+}
+
+#total,
+#print-button {
+  display: block;
+  /* Força que cada elemento ocupe a sua própria linha */
+  width: 100%;
+  /* Faz o botão se estender por toda a largura */
+  margin-bottom: 10px;
+  /* Espaçamento abaixo do botão */
+}
+
+#print-button {
+  padding: 10px 0;
+  /* Aumenta o padding vertical para aumentar o botão */
+  font-size: 20px;
+  /* Aumenta o tamanho da fonte do botão */
+  cursor: pointer;
+  /* Muda o cursor para indicar que é clicável */
+  background-color: #4CAF50;
+  /* Cor de fundo do botão */
+  color: white;
+  /* Cor do texto do botão */
+  border: none;
+  /* Remove a borda do botão */
+  border-radius: 5px;
+  /* Adiciona bordas arredondadas ao botão */
 }
 
 .footer-bar {
@@ -58,24 +140,38 @@ body, html {
 }
 
 .button-container {
-  display: grid;               /* Utiliza o layout grid para um controle mais preciso */
-  grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr)); /* Cria colunas que respeitam o conteúdo mínimo e se expandem igualmente */
-  gap: 10px;                   /* Espaçamento entre os botões */
-  padding: 10px;               /* Espaçamento interno do container */
-  height: calc(100vh - 50px - 20px); /* Altura ajustada */
+  display: grid;
+  /* Utiliza o layout grid para um controle mais preciso */
+  grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr));
+  /* Cria colunas que respeitam o conteúdo mínimo e se expandem igualmente */
+  gap: 10px;
+  /* Espaçamento entre os botões */
+  padding: 10px;
+  /* Espaçamento interno do container */
+  height: calc(100vh - 50px - 20px);
+  /* Altura ajustada */
 }
 
 .button-container button {
-  padding: 20px;               /* Espaçamento interno para cada botão */
-  font-size: 1.5rem;           /* Tamanho da fonte */
-  white-space: nowrap;         /* Impede que o texto quebre em múltiplas linhas */
-  overflow: hidden;            /* Esconde o overflow de texto */
-  text-overflow: ellipsis;     /* Adiciona reticências se o texto for muito longo */
-  border: 1px solid #ccc;      /* Borda para melhorar a visualização dos limites dos botões */
-  background-color: #f0f0f0;   /* Cor de fundo */
-  transition: background-color 0.3s; /* Transição suave para hover */
+  padding: 20px;
+  /* Espaçamento interno para cada botão */
+  font-size: 1.5rem;
+  /* Tamanho da fonte */
+  white-space: nowrap;
+  /* Impede que o texto quebre em múltiplas linhas */
+  overflow: hidden;
+  /* Esconde o overflow de texto */
+  text-overflow: ellipsis;
+  /* Adiciona reticências se o texto for muito longo */
+  border: 1px solid #ccc;
+  /* Borda para melhorar a visualização dos limites dos botões */
+  background-color: #f0f0f0;
+  /* Cor de fundo */
+  transition: background-color 0.3s;
+  /* Transição suave para hover */
 }
 
 .button-container button:hover {
-  background-color: #e0e0e0;   /* Cor de fundo ao passar o mouse */
+  background-color: #e0e0e0;
+  /* Cor de fundo ao passar o mouse */
 }
