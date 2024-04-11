@@ -6,6 +6,7 @@ const util = require('util');
 novoArquivoRTF = path.resolve(__dirname, './senha.rtf');
 
 async function printRTF(produto, quantidade, preco, total, nPrint) {
+  console.log("INIT PRINT:", nPrint);
   try {
     fs.unlinkSync(novoArquivoRTF);
   } catch (err) {
