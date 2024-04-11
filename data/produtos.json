@@ -12,7 +12,7 @@
             "botao": "1", "descricao": "Alheira", "preco": "6,00" 
         },
         {
-            "botao": "2","descricao": "Chouriça", "preco": "8,00" 
+            "botao": "2","descricao": "Chourica", "preco": "8,00" 
         },
         {
             "botao": "3","descricao": "Moelas", "preco": "5,00" 
@@ -21,7 +21,7 @@
             "botao": "4","descricao": "Bifanas", "preco": "3,50" 
         },
         {
-            "botao": "5","descricao": "Tábua de Enchidos", "preco": "10,00" 
+            "botao": "5","descricao": "Tabua de Enchidos", "preco": "10,00" 
         },
         {
             "botao": "6","descricao": "Salada de Orelha", "preco": "5,00" 
@@ -52,10 +52,10 @@
             "botao": "2","descricao": "Batata Cozida", "preco": "2,00" 
         },
         {
-            "botao": "3","descricao": "Feijão Preto", "preco": "4,00" 
+            "botao": "3","descricao": "Feijao Preto", "preco": "4,00" 
         },
         {
-            "botao": "4","descricao": "Migas de Grão", "preco": "4,00"
+            "botao": "4","descricao": "Migas de Grao", "preco": "4,00"
         }
     ],
     "Doces": [
@@ -98,7 +98,7 @@
             "botao": "5","descricao": "Sangria", "preco": "1,50"
         },
         {
-            "botao": "6","descricao": "Café", "preco": "1,00"
+            "botao": "6","descricao": "Cafe", "preco": "1,00"
         },
         {
             "botao": "7","descricao": "Jarra Sangria", "preco": "8,00"

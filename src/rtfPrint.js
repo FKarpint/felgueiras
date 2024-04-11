@@ -10,7 +10,7 @@ async function printRTF(produto, quantidade, preco, total) {
   const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Curlz MT;}{\\f1\\fnil\\fcharset0 Calibri;}}
   {\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 
   \\pard\\sa200\\sl276\\slmult1\\qc\\b\\f0\\fs36\\lang22 Taberna Medieval\\par
-  \\fs22 Comiss\\'e3o de  de Felgueiras 2024\\b0\\par
+  \\fs22 Comiss\\'e3o de Festas de Felgueiras 2024\\b0\\par
   ____________________________________\\par
   
   \\pard\\sa200\\sl276\\slmult1\\b\\fs32 ${quantidade} - ${produto} \\b0\\fs22\\par
