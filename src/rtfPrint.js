@@ -28,7 +28,7 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
 
   fs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8', (err) => {
     if (err) {
-      console.error(err);
+      console.error("FILE ERROR:", err);
       return;
     }
     console.log("PRINT:", nPrint);
