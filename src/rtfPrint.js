@@ -26,7 +26,7 @@ async function printRTF(produto, quantidade, preco, total) {
   }  
 `;
 
-  fs.writeFile(novoArquivoRTF, rtfTemplate, 'utf8', (err) => {
+  fs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8', (err) => {
     if (err) {
       console.error(err);
       return;
