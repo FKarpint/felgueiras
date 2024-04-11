@@ -6,7 +6,12 @@ const util = require('util');
 novoArquivoRTF = path.resolve(__dirname, './senha.rtf');
 
 async function printRTF(produto, quantidade, preco, total) {
-  fs.unlinkSync(novoArquivoRTF);
+  try {
+    fs.unlinkSync(novoArquivoRTF);
+  } catch (err) {
+    console.error(err);
+  }
+
   const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Curlz MT;}{\\f1\\fnil\\fcharset0 Calibri;}}
   {\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 
   \\pard\\sa200\\sl276\\slmult1\\qc\\b\\f0\\fs36\\lang22 Taberna Medieval\\par
