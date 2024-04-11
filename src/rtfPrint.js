@@ -28,16 +28,17 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
 
   try {
     fs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8');
-    console.log("Arquivo escrito com sucesso");
+    //console.log("Arquivo escrito com sucesso");
 
     for (let i = 0; i < nPrint; i++) {
-      console.log("Iniciando impressão:", i);
+      //console.log("Iniciando impressão:", i);
       const pythonProcess = spawn(
         'python',
         [path.resolve(__dirname, './print.py')],
         { cwd: path.resolve(__dirname, './') }
       );
 
+      /*
       pythonProcess.stdout.on('data', (data) => {
         const textChunk = data.toString('utf8');
         util.log(textChunk);
@@ -50,6 +51,7 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
       pythonProcess.on('close', (code) => {
         console.log(`Processo Python finalizado com código ${code}`);
       });
+      */
     }
 
   } catch (err) {
