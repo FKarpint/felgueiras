@@ -9,7 +9,6 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
   try {
     fs.unlinkSync(novoArquivoRTF);
   } catch (err) {
-    console.error(err);
   }
 
   const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Curlz MT;}{\\f1\\fnil\\fcharset0 Calibri;}}
@@ -31,8 +30,9 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
       console.error(err);
       return;
     }
-
+    console.log("PRINT:", nPrint);
     for (let i = 0; i < nPrint; i++) {
+      console.log("PRINT:", i);
       const pythonProcess = spawn(
         'python',
         [path.resolve(__dirname, './print.py')],
