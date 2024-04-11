@@ -26,28 +26,35 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
   }  
 `;
 
-  fs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8', (err) => {
-    if (err) {
-      console.error("FILE ERROR:", err);
-      return;
-    }
-    console.log("PRINT:", nPrint);
-    //for (let i = 0; i < nPrint; i++) {
-      console.log("PRINT:", i);
+  try {
+    fs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8');
+    console.log("Arquivo escrito com sucesso");
+
+    for (let i = 0; i < nPrint; i++) {
+      console.log("Iniciando impressão:", i);
       const pythonProcess = spawn(
         'python',
         [path.resolve(__dirname, './print.py')],
-        {
-          cwd: path.resolve(__dirname, './')
-        },
+        { cwd: path.resolve(__dirname, './') }
       );
+
       pythonProcess.stdout.on('data', (data) => {
         const textChunk = data.toString('utf8');
-
         util.log(textChunk);
       });
-    //}
-  });
+
+      pythonProcess.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+      });
+
+      pythonProcess.on('close', (code) => {
+        console.log(`Processo Python finalizado com código ${code}`);
+      });
+    }
+
+  } catch (err) {
+    console.error("Erro ao escrever arquivo:", err);
+  }
 }
 
 module.exports = { printRTF };
