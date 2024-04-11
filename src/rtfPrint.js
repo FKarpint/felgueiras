@@ -32,7 +32,7 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
       return;
     }
     console.log("PRINT:", nPrint);
-    for (let i = 0; i < nPrint; i++) {
+    //for (let i = 0; i < nPrint; i++) {
       console.log("PRINT:", i);
       const pythonProcess = spawn(
         'python',
@@ -46,7 +46,7 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
 
         util.log(textChunk);
       });
-    }
+    //}
   });
 }
 
