@@ -7,19 +7,18 @@ novoArquivoRTF = path.resolve(__dirname, './senha.rtf');
 
 async function printRTF(produto, quantidade, preco, total) {
   fs.unlinkSync(novoArquivoRTF);
-  const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Calibri;}}
-{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 
-\\pard\\sa200\\sl276\\slmult1\\qc\\f0\\fs22\\lang22 Comiss\\'e3o de Festas 2024\\par
-Felgueiras - Torre de Moncorvo\\par
-_____________________________________\\par
-
-\\pard\\sa200\\sl276\\slmult1 ${produto}\\par
-Quantidade: ${quantidade}\\par
-Preco: ${preco}\\par
-_____________________________________\\par
-TOTAL: ${total}\\par
-\\par
-}
+  const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Curlz MT;}{\\f1\\fnil\\fcharset0 Calibri;}}
+  {\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 
+  \\pard\\sa200\\sl276\\slmult1\\qc\\b\\f0\\fs36\\lang22 Taberna Medieval\\par
+  \\fs22 Comiss\\'e3o de  de Felgueiras 2024\\b0\\par
+  ____________________________________\\par
+  
+  \\pard\\sa200\\sl276\\slmult1\\b\\fs32 ${quantidade} - ${produto} \\b0\\fs22\\par
+  Preco Unidade: ${preco}\\par
+  ____________________________________\\par
+  \\b\\fs32 TOTAL: ${total}\\b0\\fs22\\par
+  \\f1\\par
+  }  
 `;
 
   fs.writeFile(novoArquivoRTF, rtfTemplate, 'utf8', (err) => {
