@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <div class="header">
-      Comissão de Festas de Felgueiras - Sistema de Emissão de Senhas
+    Comissão de Festas de Felgueiras - Sistema de Emissão de Senhas
   </div>
-  <hr>
-  <div id="product-buttons"></div>
+  <div class="container">
+    <div class="menu-section">
+      <div id="product-buttons" class="button-container"></div>
+      <!-- Botões de menu aqui -->
+    </div>
+    <div class="order-section">
+      <ul id="order-items" class="order-items">
+        <!-- Itens do pedido listados aqui -->
+      </ul>
+      <div class="order-total">
+        <span id="total">Total: €0,00</span>
+        <button id="print-button" disabled>Imprimir</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar" id="footer-bar">
+    Felgueiras - Torre de Moncorvo
+  </div>
   <script src="scripts.js"></script>
 </body>
 </html>

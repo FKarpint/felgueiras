@@ -1,41 +1,81 @@
-html,
-body {
-  height: 100%;
-  /* Faz com que o HTML e o body ocupem toda a altura da janela */
+* {
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  /* Organiza os filhos em uma coluna */
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100vh; /* Define a altura total da página para ser a altura da viewport */
+  font-family: Arial, sans-serif;
 }
 
 .header {
-  /* Estilos para o cabeçalho, se necessário */
+  padding: 10px 0;
+  text-align: center;
+  background-color: #f2f2f2;
 }
 
-#product-buttons {
-  flex-grow: 1;
-  /* Ocupa todo o espaço vertical restante */
+.container {
   display: flex;
-  /* Usa Flexbox */
-  flex-wrap: wrap;
-  /* Permite que os botões ocupem mais de uma linha */
-  gap: 10px;
-  /* Espaço entre os botões */
-  padding: 10px;
-  /* Espaço ao redor dos botões dentro do contêiner */
-  justify-content: space-evenly;
-  /* Distribui o espaço horizontalmente de maneira uniforme */
-  align-items: stretch;
-  /* Estica os itens verticalmente para preencher o contêiner */
+  flex-direction: row; /* Coloca os elementos filhos lado a lado horizontalmente */
+  height: calc(100vh - 50px); /* Ajusta a altura para descontar apenas o cabeçalho */
 }
 
-#product-buttons button {
-  flex-grow: 1;
-  /* Cresce para ocupar o espaço disponível */
-  flex-basis: calc(33% - 20px);
-  /* Base de crescimento, ajuste conforme o número de botões por linha */
-  /* 33% para 3 botões por linha, 20px para descontar o gap e a margem */
-  height: 100px;
-  /* Altura fixa para os botões */
+.menu-section {
+  flex: 1; /* Ocupa o espaço restante depois de definir o .order-section */
+  overflow-y: auto;
+  background-color: #f0f0f0;
+}
+
+.order-section {
+  width: 30%; /* Define a largura da seção de pedidos para 30% */
+  height: calc(100vh - 50px); /* Ajusta a altura para ser a mesma do container */
+  overflow-y: auto;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-items {
+  flex-grow: 1; /* Permite que a lista de itens cresça para ocupar o espaço disponível */
+  overflow-y: auto;
+}
+
+.order-total {
+  padding: 10px;
+  background: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.footer-bar {
+  padding: 5px;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.button-container {
+  display: grid;               /* Utiliza o layout grid para um controle mais preciso */
+  grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr)); /* Cria colunas que respeitam o conteúdo mínimo e se expandem igualmente */
+  gap: 10px;                   /* Espaçamento entre os botões */
+  padding: 10px;               /* Espaçamento interno do container */
+  height: calc(100vh - 50px - 20px); /* Altura ajustada */
+}
+
+.button-container button {
+  padding: 20px;               /* Espaçamento interno para cada botão */
+  font-size: 1.5rem;           /* Tamanho da fonte */
+  white-space: nowrap;         /* Impede que o texto quebre em múltiplas linhas */
+  overflow: hidden;            /* Esconde o overflow de texto */
+  text-overflow: ellipsis;     /* Adiciona reticências se o texto for muito longo */
+  border: 1px solid #ccc;      /* Borda para melhorar a visualização dos limites dos botões */
+  background-color: #f0f0f0;   /* Cor de fundo */
+  transition: background-color 0.3s; /* Transição suave para hover */
+}
+
+.button-container button:hover {
+  background-color: #e0e0e0;   /* Cor de fundo ao passar o mouse */
 }

@@ -11,8 +11,10 @@ if (require('electron-squirrel-startup')) {
 
 const debug = 1;
 
+let mainWindow;
+
 const createWindow = () => {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     fullscreen: true,
@@ -71,15 +73,19 @@ function createQuantityWindow(parentWindow, product) {
   return modal;
 }
 
-ipcMain.on('print-receipt', async (event, product, quantity, total, nPrint) => {
-  await printRTF(product.descricao, quantity, product.preco, total, nPrint);
+ipcMain.on('print-receipt', async (event, products, total, nPrint) => {
+  await printRTF(products, total, nPrint);
   const data = moment().format("DD/MM/YYYY HH:mm:ss")
-  fs.appendFileSync("registos.csv", `${product.descricao};${quantity};${product.preco};${total};${data}\n`);
+  fs.appendFileSync("registos.csv", products.map(p => `${p.descricao};${p.quantidade};${p.preco};${total};${data}\n`).join(''));
 });
 
 ipcMain.on('open-quantity-window', (event, product) => {
   const parentWindow = BrowserWindow.fromWebContents(event.sender);
   createQuantityWindow(parentWindow, product);
+});
+
+ipcMain.on('quantity-chosen', (event, quantity, product) => {
+  mainWindow.webContents.send('quantity-selected', quantity, product);
 });
 
 ipcMain.on('close-quantity-window', (event) => {

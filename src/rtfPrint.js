@@ -5,11 +5,19 @@ const util = require('util');
 
 novoArquivoRTF = path.resolve(__dirname, './senha.rtf');
 
-async function printRTF(produto, quantidade, preco, total, nPrint) {
+async function printRTF(produtos, total, nPrint) {
   if (fs.existsSync(novoArquivoRTF)) {
     fs.unlinkSync(novoArquivoRTF);
   } else {
-    console.log('O arquivo não existe, não é necessário excluí-lo.');
+    //console.log('O arquivo não existe, não é necessário excluí-lo.');
+  }
+
+  let produtosString = '';
+  for (const produto of produtos) {
+    produtosString += `\\pard\\sa200\\sl276\\slmult1\\b\\fs32 ${produto.quantidade} - ${produto.descricao} \\b0\\fs22\\par
+    Preco Unidade: ${produto.preco}\\par
+    ____________________________________\\par
+    `;
   }
 
   const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Curlz MT;}{\\f1\\fnil\\fcharset0 Calibri;}}
@@ -17,18 +25,15 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
   \\pard\\sa200\\sl276\\slmult1\\qc\\b\\f0\\fs36\\lang22 Taberna Medieval\\par
   \\fs22 Comiss\\'e3o de Festas de Felgueiras 2024\\b0\\par
   ____________________________________\\par
-  
-  \\pard\\sa200\\sl276\\slmult1\\b\\fs32 ${quantidade} - ${produto} \\b0\\fs22\\par
-  Preco Unidade: ${preco}\\par
-  ____________________________________\\par
+  ${produtosString}
   \\b\\fs32 TOTAL: ${total}\\b0\\fs22\\par
   \\f1\\par
-  }  
-`;
-
+  }`;
   try {
     fs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8');
     //console.log("Arquivo escrito com sucesso");
+    
+    return;
 
     for (let i = 0; i < nPrint; i++) {
       //console.log("Iniciando impressão:", i);

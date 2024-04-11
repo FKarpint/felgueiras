@@ -2,36 +2,9 @@
 <html>
 
 <head>
-    <title>Impressão</title>
+    <title>Quantidade</title>
     <style>
-        button {
-            padding: 20px 40px;
-            /* Aumenta o espaço interno do botão */
-            font-size: 24px;
-            /* Aumenta o tamanho da fonte */
-            margin: 10px;
-            /* Adiciona espaço ao redor dos botões */
-            cursor: pointer;
-            /* Muda o cursor para indicar que é clicável */
-        }
-
-        button.selected {
-            background-color: green;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            /* Espaçamento entre os botões */
-        }
+        /* Seu CSS aqui */
     </style>
 </head>
 
@@ -39,24 +12,15 @@
     <div class="button-group">
         <h1>Selecione a quantidade</h1>
         <div class="buttons">
+            <!-- Certifique-se de que todos os botões têm IDs únicos -->
             <button id="qty1">1</button>
             <button id="qty2">2</button>
+            <button id="qty3">3</button>
+            <button id="qty4">4</button>
             <button id="qty5">5</button>
             <button id="qty10">10</button>
+            <button id="qty15">15</button> <!-- ID corrigido -->
             <button id="qty20">20</button>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="button-group">
-        <h1>Selecione número de Impressões</h1>
-        <div class="buttons">
-            <button id="print1">1</button>
-            <button id="print2">2</button>
-            <button id="print5">5</button>
-            <button id="print10">10</button>
-            <button id="print20">20</button>
         </div>
     </div>
 
@@ -65,69 +29,28 @@
     <script>
         const { ipcRenderer } = require('electron');
         let produtoAtual;
-        let quantidadeSelecionada = null;
-        let impressoesSelecionadas = null;
+        let quantidadeSelecionada;
 
         ipcRenderer.on('product-data', (event, product) => {
             produtoAtual = product;
         });
 
-        const botoesQuantidade = document.querySelectorAll('#qty1, #qty2, #qty5, #qty10, #qty20');
-        const botoesImpressao = document.querySelectorAll('#print1, #print2, #print5, #print10, #print20');
-
-        function desabilitarBotoesImpressao() {
-            botoesImpressao.forEach(botao => botao.disabled = true);
-        }
-
-        function habilitarBotoesImpressao() {
-            botoesImpressao.forEach(botao => botao.disabled = false);
-        }
-
-        desabilitarBotoesImpressao();
+        const botoesQuantidade = document.querySelectorAll('#qty1, #qty2, #qty3, #qty4, #qty5, #qty10, #qty15, #qty20');
 
         botoesQuantidade.forEach(button => {
             button.addEventListener('click', () => {
-                if (quantidadeSelecionada !== button) {
-                    // Desmarcar o botão anteriormente selecionado, se houver
-                    if (quantidadeSelecionada) {
-                        quantidadeSelecionada.classList.remove('selected');
-                    }
-
-                    quantidadeSelecionada = button;
-                    button.classList.add('selected');
-                    habilitarBotoesImpressao();
-                } else {
-                    // Se o mesmo botão for clicado novamente, desmarcá-lo
-                    button.classList.remove('selected');
-                    quantidadeSelecionada = null;
-                    desabilitarBotoesImpressao();
+                quantidadeSelecionada = parseInt(button.textContent);
+                if (produtoAtual && quantidadeSelecionada) {
+                    ipcRenderer.send('quantity-chosen', quantidadeSelecionada, produtoAtual);
+                    window.close();
                 }
             });
         });
 
-        botoesImpressao.forEach(button => {
-            button.addEventListener('click', () => {
-                impressoesSelecionadas = parseInt(button.textContent);
-                if (quantidadeSelecionada && impressoesSelecionadas && produtoAtual) {
-                    const precoNumerico = parseFloat(produtoAtual.preco.replace(',', '.'));
-                    const total = precoNumerico * parseInt(quantidadeSelecionada.textContent);
-
-                    const totalFormatado = total.toFixed(2).replace('.', ',');
-
-                    ipcRenderer.send('print-receipt', produtoAtual, parseInt(quantidadeSelecionada.textContent), totalFormatado, impressoesSelecionadas);
-                    ipcRenderer.send('close-quantity-window');
-                }
-            });
+        document.getElementById('close-button').addEventListener('click', () => {
+            window.close();
         });
-
-        const closeButton = document.getElementById('close-button');
-        closeButton.addEventListener('click', () => {
-            ipcRenderer.send('close-quantity-window');
-        });
-
-
     </script>
-
 </body>
 
 </html>
