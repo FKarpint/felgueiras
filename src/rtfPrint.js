@@ -6,10 +6,15 @@ const util = require('util');
 novoArquivoRTF = path.resolve(__dirname, './senha.rtf');
 
 async function printRTF(produto, quantidade, preco, total, nPrint) {
-  console.log("INIT PRINT:", nPrint);
   try {
-    fs.unlinkSync(novoArquivoRTF);
-  } catch (err) {
+    fs.statSync(filePath);
+    fs.unlinkSync(filePath);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      console.log('O arquivo não existe, não é necessário excluí-lo.');
+    } else {
+      //throw error;
+    }
   }
 
   const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Curlz MT;}{\\f1\\fnil\\fcharset0 Calibri;}}
