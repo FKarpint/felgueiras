@@ -13,7 +13,7 @@ async function printRTF(produto, quantidade, preco, total, nPrint) {
     if (error.code === 'ENOENT') {
       console.log('O arquivo não existe, não é necessário excluí-lo.');
     } else {
-      //throw error;
+      throw error;
     }
   }
 
