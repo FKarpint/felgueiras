@@ -25,23 +25,23 @@
         },
         {
             "botao": "6","descricao": "Salada de Orelha", "preco": "5,00" 
+        },
+        {
+            "botao": "7","descricao": "Folar de Carne", "preco": "3,00" 
         }
     ],
     "Ementa": [
         {
-            "botao": "1", "descricao": "Javali Estufado", "preco": "10,00" 
+            "botao": "1", "descricao": "Feijoada", "preco": "10,00" 
         },
         {
-            "botao": "2","descricao": "Migas de Bacalhau", "preco": "8,00" 
+            "botao": "2","descricao": "Grelhada Mista", "preco": "12,00" 
         },
         {
-            "botao": "3","descricao": "Grelhada Mista", "preco": "12,00" 
+            "botao": "3","descricao": "Espetada de Javali", "preco": "4,00"
         },
         {
-            "botao": "4","descricao": "Espetada de Javali", "preco": "4,00"
-        },
-        {
-            "botao": "5","descricao": "Espetada de Peru", "preco": "3,00" 
+            "botao": "4","descricao": "Espetada de Peru", "preco": "3,00" 
         }
     ],
     "Acompanhamentos": [
@@ -56,6 +56,9 @@
         },
         {
             "botao": "4","descricao": "Migas de Grao", "preco": "4,00"
+        },
+        {
+            "botao": "5","descricao": "Migas de Tomate", "preco": "4,00"
         }
     ],
     "Doces": [
