@@ -42,6 +42,12 @@
         },
         {
             "botao": "4","descricao": "Espetada de Peru", "preco": "3,00" 
+        },
+        {
+            "botao": "5","descricao": "Javali Estufado", "preco": "10,00" 
+        },
+        {
+            "botao": "6","descricao": "Migas de Bacalhau", "preco": "8,00" 
         }
     ],
     "Acompanhamentos": [
@@ -108,6 +114,9 @@
         },
         {
             "botao": "8","descricao": "Jarra Vinho", "preco": "5,00"
+        },
+        {
+            "botao": "9","descricao": "Jarra Sumo", "preco": "5,00"
         }
     ]
 }
