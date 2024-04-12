@@ -32,8 +32,6 @@ async function printRTF(produtos, total, nPrint) {
   try {
     fs.writeFileSync(novoArquivoRTF, rtfTemplate, 'utf8');
     //console.log("Arquivo escrito com sucesso");
-    
-    return;
 
     for (let i = 0; i < nPrint; i++) {
       //console.log("Iniciando impressão:", i);
