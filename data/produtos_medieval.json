@@ -1,0 +1,122 @@
+{
+    "Sopas": [
+        {
+            "botao": "1", "descricao": "Canja", "preco": "3,00" 
+        },
+        {
+            "botao": "2","descricao": "Caldo-Verde", "preco": "3,00" 
+        }
+    ],
+    "Petiscos": [
+        {
+            "botao": "1", "descricao": "Alheira", "preco": "6,00" 
+        },
+        {
+            "botao": "2","descricao": "Chourica", "preco": "8,00" 
+        },
+        {
+            "botao": "3","descricao": "Moelas", "preco": "5,00" 
+        },
+        {
+            "botao": "4","descricao": "Bifanas", "preco": "3,50" 
+        },
+        {
+            "botao": "5","descricao": "Tabua de Enchidos", "preco": "10,00" 
+        },
+        {
+            "botao": "6","descricao": "Salada de Orelha", "preco": "5,00" 
+        },
+        {
+            "botao": "7","descricao": "Folar de Carne", "preco": "3,00" 
+        }
+    ],
+    "Ementa": [
+        {
+            "botao": "1", "descricao": "Feijoada", "preco": "10,00" 
+        },
+        {
+            "botao": "2","descricao": "Grelhada Mista", "preco": "12,00" 
+        },
+        {
+            "botao": "3","descricao": "Espetada de Javali", "preco": "4,00"
+        },
+        {
+            "botao": "4","descricao": "Espetada de Peru", "preco": "3,00" 
+        },
+        {
+            "botao": "5","descricao": "Javali Estufado", "preco": "10,00" 
+        },
+        {
+            "botao": "6","descricao": "Migas de Bacalhau", "preco": "8,00" 
+        }
+    ],
+    "Acompanhamentos": [
+        {
+            "botao": "1", "descricao": "Arroz Branco", "preco": "2,00" 
+        },
+        {
+            "botao": "2","descricao": "Batata Cozida", "preco": "2,00" 
+        },
+        {
+            "botao": "3","descricao": "Feijao Preto", "preco": "4,00" 
+        },
+        {
+            "botao": "4","descricao": "Migas de Grao", "preco": "4,00"
+        },
+        {
+            "botao": "5","descricao": "Migas de Tomate", "preco": "4,00"
+        }
+    ],
+    "Doces": [
+        {
+            "botao": "1", "descricao": "Pudim", "preco": "3,00" 
+        },
+        {
+            "botao": "2","descricao": "Arroz Doce", "preco": "3,00" 
+        },
+        {
+            "botao": "3","descricao": "Milhos", "preco": "3,00" 
+        },
+        {
+            "botao": "4","descricao": "Queijo Fresco", "preco": "2,00"
+        },
+        {
+            "botao": "5","descricao": "Bolo Moreno", "preco": "2,00"
+        },
+        {
+            "botao": "5","descricao": "Bolo de Amendoa", "preco": "2,00"
+        }
+    ],
+    "Bebidas": [
+        {
+            "botao": "1", "descricao": "Agua", "preco": "1,00" 
+        },
+        {
+            "botao": "2","descricao": "Vinho", "preco": "1,00" 
+        },
+        {
+            "botao": "3","descricao": "Sumos", "preco": "2,00" 
+        },
+        {
+            "botao": "4","descricao": "Cerveja", "preco": "1,00"
+        },
+        {
+            "botao": "5","descricao": "Sidra", "preco": "2,00"
+        },
+        {
+            "botao": "5","descricao": "Sangria", "preco": "1,50"
+        },
+        {
+            "botao": "6","descricao": "Cafe", "preco": "1,00"
+        },
+        {
+            "botao": "7","descricao": "Jarra Sangria", "preco": "8,00"
+        },
+        {
+            "botao": "8","descricao": "Jarra Vinho", "preco": "5,00"
+        },
+        {
+            "botao": "9","descricao": "Jarra Sumo", "preco": "5,00"
+        }
+    ]
+}

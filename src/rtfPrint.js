@@ -20,10 +20,16 @@ async function printRTF(produtos, total, nPrint) {
     `;
   }
 
-  const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2070{\\fonttbl{\\f0\\fnil\\fcharset0 Curlz MT;}{\\f1\\fnil\\fcharset0 Calibri;}}
-  {\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 
-  \\pard\\sa200\\sl276\\slmult1\\qc\\b\\f0\\fs36\\lang22 Taberna Medieval\\par
-  \\fs22 Comiss\\'e3o de Festas de Felgueiras 2024\\b0\\par
+  const rtfTemplate = `{\\rtf1\\ansi\\ansicpg1252\\cocoartf2761
+    \\cocoatextscaling0\\cocoaplatform0{\\fonttbl\\f0\\fswiss\\fcharset0 Helvetica;\\f1\\fswiss\\fcharset0 Helvetica-Bold;}
+    {\\colortbl;\\red255\\green255\\blue255;}
+    {\\*\\expandedcolortbl;;}
+    \\paperw11900\\paperh16840\\vieww12000\\viewh15840\\viewkind0
+    \\pard\\tx560\\tx1120\\tx1680\\tx2240\\tx2800\\tx3360\\tx3920\\tx4480\\tx5040\\tx5600\\tx6160\\tx6720\\pardirnatural\\partightenfactor0
+    
+    \\f0\\fs24 \\cf0    							
+    \\f1\\b\\fs36  
+    \\fs22 Comiss\\'e3o de Festas de Felgueiras 2024\\b0\\par
   ____________________________________\\par
   ${produtosString}
   \\b\\fs32 TOTAL: ${total}\\b0\\fs22\\par

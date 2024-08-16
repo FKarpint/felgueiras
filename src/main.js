@@ -74,10 +74,7 @@ function createQuantityWindow(parentWindow, product) {
 }
 
 ipcMain.on('print-receipt', async (event, products, total, nPrint) => {
-  await printRTF(products, total, nPrint);
-  const data = moment().format("DD/MM/YYYY HH:mm:ss")
-  fs.appendFileSync("registos.csv", products.map(p => `${p.descricao};${p.quantidade};${p.preco};${total};${data}\n`).join(''));
-  mainWindow.webContents.send('receipt-printed');
+  printReceipt(products, total, nPrint);
 });
 
 ipcMain.on('open-quantity-window', (event, product) => {
@@ -89,17 +86,55 @@ ipcMain.on('quantity-chosen', (event, quantity, product) => {
   mainWindow.webContents.send('quantity-selected', quantity, product);
 });
 
+
 ipcMain.on('close-quantity-window', (event) => {
   const webContents = event.sender;
   const window = BrowserWindow.fromWebContents(webContents);
   if (window) window.close();
 });
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
+
+//new Changes FC
+ipcMain.on('open-print-qtd-window', (event, data) => {
+  printData = data;
+
+  const modalPath = path.join('file://', __dirname, 'print-qtd.html');
+  let printQtdWindow = new BrowserWindow({
+      parent: BrowserWindow.getFocusedWindow(),
+      modal: true,
+      show: false,
+      width: 400,
+      height: 300,
+      webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false,
+      },
+  });
+
+  printQtdWindow.loadURL(modalPath);
+  printQtdWindow.once('ready-to-show', () => {
+      printQtdWindow.show();
+  });
+
+  printQtdWindow.on('closed', () => {
+      printQtdWindow = null;
+  });
+});
+
+ipcMain.on('print-chosen', (event, nPrint) => {
+
+  printReceipt(printData.products, printData.total, nPrint);
+});
+
+async function printReceipt(products, total, nPrint) {
+  await printRTF(products, total, nPrint);
+  const data = moment().format("DD/MM/YYYY HH:mm:ss")
+  fs.appendFileSync("registos.csv", products.map(p => `${p.descricao};${p.quantidade};${nPrint};${p.preco};${total};${data}\n`).join(''));
+  mainWindow.webContents.send('receipt-printed');
+}

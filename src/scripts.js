@@ -10,7 +10,7 @@ function loadMenu() {
     fetch('../data/produtos.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`Load error! status: ${response.status}`);
             }
             return response.json();
         })
@@ -18,7 +18,21 @@ function loadMenu() {
             const productContainer = document.getElementById('product-buttons');
             productContainer.innerHTML = '';
 
+            //carregar os artigos sem categoria
+            if (data[""]) {
+                data[""].forEach(product => {
+                    const btn = document.createElement('button');
+                    btn.textContent = product.descricao + ' - ' + product.preco;
+                    btn.onclick = () => openQuantityScreen(product);
+                    productContainer.appendChild(btn);
+                });
+                const hr = document.createElement('hr');
+                productContainer.appendChild(hr);
+            }
+
             for (const categoria in data) {
+                if (categoria === "") continue;
+
                 const btn = document.createElement('button');
                 btn.textContent = categoria;
                 btn.onclick = () => loadProducts(data[categoria], data);
@@ -128,10 +142,13 @@ function updateTotal() {
     });
     document.getElementById('total').textContent = `Total: €${total.toFixed(2).replace('.', ',')}`;
     const printButton = document.getElementById('print-button');
+    const printButtonQtd = document.getElementById('print-button-qtd');
     if (total > 0) {
         printButton.disabled = false;
+        printButtonQtd.disabled = false;
     } else {
         printButton.disabled = true;
+        printButtonQtd.disabled = true;
     }
 }
 
@@ -147,4 +164,20 @@ document.getElementById('print-button').addEventListener('click', () => {
     const total = parseFloat(totalText.split('€')[1].replace(',', '.'));
 
     ipcRenderer.send('print-receipt', products, total, 1);
+});
+
+//new changes FC
+document.getElementById('print-button-qtd').addEventListener('click', () => {
+    const orderItems = document.querySelectorAll('#order-items tr');
+    let products = Array.from(orderItems).map(item => ({
+        descricao: item.children[0].textContent,
+        quantidade: parseInt(item.getAttribute('data-quantidade')),
+        preco: item.getAttribute('data-preco')
+    }));
+    products.shift();
+
+    const totalText = document.getElementById('total').textContent;
+    const total = parseFloat(totalText.split('€')[1].replace(',', '.'));
+
+    ipcRenderer.send('open-print-qtd-window', { products, total });
 });

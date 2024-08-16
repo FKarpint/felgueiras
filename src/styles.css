@@ -129,6 +129,32 @@ html {
   /* Adiciona bordas arredondadas ao botão */
 }
 
+#print-button-qtd {
+  display: block;
+  /* Força que cada elemento ocupe a sua própria linha */
+  width: 100%;
+  /* Faz o botão se estender por toda a largura */
+  margin-bottom: 10px;
+  /* Espaçamento abaixo do botão */
+}
+
+#print-button-qtd {
+  padding: 10px 0;
+  /* Aumenta o padding vertical para aumentar o botão */
+  font-size: 20px;
+  /* Aumenta o tamanho da fonte do botão */
+  cursor: pointer;
+  /* Muda o cursor para indicar que é clicável */
+  background-color: blue;
+  /* Cor de fundo do botão */
+  color: white;
+  /* Cor do texto do botão */
+  border: none;
+  /* Remove a borda do botão */
+  border-radius: 5px;
+  /* Adiciona bordas arredondadas ao botão */
+}
+
 .footer-bar {
   padding: 5px;
   background: #333;
