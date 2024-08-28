@@ -17,18 +17,18 @@ async function printRTF(produtos, total, nPrint) {
   let produtosHtml = `
   <br>
   <pre>
-  ${await formatString("QTD".toString(),3,"left")} | ${await formatString("PREÇO".toString(),5,"left")} | ${await formatString("DESCRIÇÃO".toString(),10,"left")}
+  ${await formatString("QTD".toString(),3,"left")} | &nbsp;&nbsp;${await formatString("PREÇO".toString(),5,"left")}&nbsp;&nbsp; | ${await formatString("DESCRIÇÃO".toString(),12,"left")}
   </pre>
   `;
   for (const produto of produtos) {
     let qtd = await formatString(produto.quantidade.toString(),4,"left");
     let preco = await formatString(produto.preco.toString(),6,"left");
-    let descricao = await formatString(produto.descricao.toString(),18,"left");
+    let descricao = await formatString(produto.descricao.toString(),16,"left");
 
     produtosHtml += `
     <br>
     <pre>
-    <strong>${qtd}</strong> | ${preco} EUR | ${descricao}
+    &nbsp;&nbsp;&nbsp;<strong>${qtd}</strong> | ${preco} EUR | ${descricao}
     </pre>
     `;
   }
