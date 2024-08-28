@@ -17,7 +17,7 @@ async function printRTF(produtos, total, nPrint) {
   let produtosHtml = `
   <br>
   <pre>
-  ${await formatString("QTD".toString(),3,"left")} | ${await formatString("PREÇO".toString(),5,"left")} EUR | ${await formatString("DESCRIÇÃO".toString(),10,"left")}
+  ${await formatString("QTD".toString(),3,"left")} | ${await formatString("PREÇO".toString(),5,"left")} | ${await formatString("DESCRIÇÃO".toString(),10,"left")}
   </pre>
   `;
   for (const produto of produtos) {
@@ -45,7 +45,7 @@ async function printRTF(produtos, total, nPrint) {
         ${produtosHtml}
         ________________________________
         <br>
-        <p><strong>TOTAL: ${total.toFixed(2)} €</strong></p>
+        <p><strong>TOTAL: ${total.toFixed(2)} EUR</strong></p>
       </body>
     </html>
   `;
