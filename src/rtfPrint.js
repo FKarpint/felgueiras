@@ -37,9 +37,7 @@ async function printRTF(produtos, total, nPrint) {
         <br>
         _________________________________
         <br>
-        <pre>
         Qtd | Preço | Descrição        
-        </pre>
         ${produtosHtml}
         <br>
         _________________________________
