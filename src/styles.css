@@ -167,34 +167,58 @@ html {
 
 .button-container {
   display: grid;
-  /* Utiliza o layout grid para um controle mais preciso */
-  grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr));
-  /* Cria colunas que respeitam o conteúdo mínimo e se expandem igualmente */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  /* Cria o número máximo de colunas que cabem, cada uma com largura mínima de 150px */
   gap: 10px;
   /* Espaçamento entre os botões */
   padding: 10px;
-  /* Espaçamento interno do container */
+  /* Espaçamento interno do contêiner */
   height: calc(100vh - 50px - 20px);
-  /* Altura ajustada */
+  /* Altura ajustada para o conteúdo */
+  overflow-y: auto;
+  /* Adiciona rolagem vertical se necessário */
 }
 
 .button-container button {
-  padding: 20px;
-  /* Espaçamento interno para cada botão */
-  font-size: 1.5rem;
-  /* Tamanho da fonte */
-  white-space: nowrap;
-  /* Impede que o texto quebre em múltiplas linhas */
+  padding: 10px;
+  font-size: 1.2rem;
+  /* Tamanho inicial da fonte */
+  white-space: normal;
+  /* Permite que o texto quebre em múltiplas linhas */
   overflow: hidden;
-  /* Esconde o overflow de texto */
   text-overflow: ellipsis;
-  /* Adiciona reticências se o texto for muito longo */
   border: 1px solid #ccc;
-  /* Borda para melhorar a visualização dos limites dos botões */
   background-color: #f0f0f0;
-  /* Cor de fundo */
   transition: background-color 0.3s;
-  /* Transição suave para hover */
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.button-container button span {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  /* Centraliza o texto dentro do span */
+}
+.button-container button:active,
+.button-container button:hover {
+  font-size: calc(1.2rem - 0.2rem);
+  /* Reduz o tamanho da fonte um pouco ao passar o mouse */
+}
+
+@media screen and (max-width: 600px) {
+  .button-container button {
+    font-size: 1rem;
+    /* Reduz o tamanho da fonte para telas menores */
+  }
 }
 
 .button-container button:hover {

@@ -14,10 +14,15 @@ async function printRTF(produtos, total, nPrint) {
     fs.unlinkSync(novoArquivoRTF);
   }
 
-  let produtosHtml = '';
+  let produtosHtml = `
+  <br>
+  <pre>
+  ${await formatString("QTD".toString(),3,"left")} | ${await formatString("PREÇO".toString(),5,"left")} EUR | ${await formatString("DESCRIÇÃO".toString(),10,"left")}
+  </pre>
+  `;
   for (const produto of produtos) {
-    let qtd = await formatString(produto.quantidade.toString(),4,"right");
-    let preco = await formatString(produto.preco.toString(),6,"right");
+    let qtd = await formatString(produto.quantidade.toString(),4,"left");
+    let preco = await formatString(produto.preco.toString(),6,"left");
     let descricao = await formatString(produto.descricao.toString(),18,"left");
 
     produtosHtml += `
@@ -35,14 +40,12 @@ async function printRTF(produtos, total, nPrint) {
         <br>
         Felgueiras - Torre de Moncorvo
         <br>
-        _________________________________
-        <br>
-        Qtd | Preço | Descrição        
+        ________________________________
+        <br>    
         ${produtosHtml}
+        ________________________________
         <br>
-        _________________________________
-        <br>
-        <p><strong>TOTAL: ${total.toFixed(2)} EUR</strong></p>
+        <p><strong>TOTAL: ${total.toFixed(2)} €</strong></p>
       </body>
     </html>
   `;
@@ -173,9 +176,9 @@ async function formatString(inputString, maxLength, alignment) {
   const spacesNeeded = maxLength - formattedString.length;
 
   if (alignment === 'left') {
-    formattedString = formattedString + ' '.repeat(spacesNeeded);
+    formattedString = formattedString + '&nbsp;'.repeat(spacesNeeded);
   } else if (alignment === 'right') {
-    formattedString = ' '.repeat(spacesNeeded) + formattedString;
+    formattedString = '&nbsp;'.repeat(spacesNeeded) + formattedString;
   } else {
     throw new Error('Alinhamento deve ser "left" ou "right".');
   }

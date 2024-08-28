@@ -1,28 +1,61 @@
 {
     "": [
         {
-            "botao": "1", "descricao": "Fino", "preco": "1,00" 
+            "botao": "1", "descricao": "FINO", "preco": "1,20" 
         },
         {
-            "botao": "2","descricao": "Martini", "preco": "1,50" 
+            "botao": "2","descricao": "ÁGUAS c/ e s/ gás", "preco": "1,00" 
         },
         {
-            "botao": "3","descricao": "Sidra", "preco": "1,50" 
+            "botao": "3","descricao": "VINHO Copo", "preco": "1,00" 
         },
         {
-            "botao": "4","descricao": "Bebidas Brancas", "preco": "4,00" 
+            "botao": "4","descricao": "VINHO PORTO Copo", "preco": "1,00" 
         },
         {
-            "botao": "4","descricao": "Bifanas/Crepes", "preco": "3,00" 
+            "botao": "4","descricao": "MARTINI Simples", "preco": "1,00" 
         },
         {
-            "botao": "5","descricao": "Frango", "preco": "10,00" 
+            "botao": "5","descricao": "FAVAIOS Simples", "preco": "1,00" 
         },
         {
-            "botao": "6","descricao": "Jantar Adulto", "preco": "20,00" 
+            "botao": "6","descricao": "SHOTS", "preco": "1,00" 
         },
         {
-            "botao": "7","descricao": "Jantar Criança", "preco": "12,00" 
+            "botao": "7","descricao": "CAFÉ", "preco": "1,00" 
+        },
+        {
+            "botao": "8","descricao": "BEBIDAS BRANCAS", "preco": "4,00" 
+        },
+        {
+            "botao": "9","descricao": "SIDRA", "preco": "2,00" 
+        },
+        {
+            "botao": "10","descricao": "SUMOS Lata", "preco": "1,50" 
+        },
+        {
+            "botao": "11","descricao": "MARTINI c/ Mistura", "preco": "1,50" 
+        },
+        {
+            "botao": "12","descricao": "AMÊNDOA AMARGA", "preco": "1,50" 
+        },
+        {
+            "botao": "13","descricao": "ÁGUAS c/ sabor", "preco": "1,50" 
+        },
+        {
+            "botao": "14","descricao": "FRANGO", "preco": "10,00" 
+        },
+        {
+            "botao": "15","descricao": "MEIO FRANGO", "preco": "5,00" 
+        },
+        {
+            "botao": "16","descricao": "BIFANAS", "preco": "3,00" 
+        },
+        {
+            "botao": "17","descricao": "JANTAR ADULTO", "preco": "20,00" 
+        },
+        {
+            "botao": "18","descricao": "JANTAR CRIANÇA", "preco": "12,50" 
         }
     ]
 }
