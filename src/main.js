@@ -86,13 +86,11 @@ ipcMain.on('quantity-chosen', (event, quantity, product) => {
   mainWindow.webContents.send('quantity-selected', quantity, product);
 });
 
-
 ipcMain.on('close-quantity-window', (event) => {
   const webContents = event.sender;
   const window = BrowserWindow.fromWebContents(webContents);
   if (window) window.close();
 });
-
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -101,29 +99,28 @@ app.on('window-all-closed', () => {
 });
 
 //new Changes FC
-ipcMain.on('open-print-qtd-window', (event, data) => {
+ipcMain.on('open-print-qtd-window', (parentWindow, data) => {
   printData = data;
 
-  const modalPath = path.join('file://', __dirname, 'print-qtd.html');
   let printQtdWindow = new BrowserWindow({
-      parent: BrowserWindow.getFocusedWindow(),
-      modal: true,
-      show: false,
-      width: 400,
-      height: 300,
-      webPreferences: {
-          nodeIntegration: true,
-          contextIsolation: false,
-      },
+    parent: parentWindow,
+    modal: true,
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    },
+    show: false
   });
-
-  printQtdWindow.loadURL(modalPath);
+  printQtdWindow.loadFile(path.join(__dirname, 'print-qtd.html'));
+  
   printQtdWindow.once('ready-to-show', () => {
-      printQtdWindow.show();
+    printQtdWindow.show();
   });
 
   printQtdWindow.on('closed', () => {
-      printQtdWindow = null;
+    printQtdWindow = null;
   });
 });
 
