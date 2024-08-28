@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 const fs = require('fs');
 const moment = require("moment");
-const { printRTF } = require('./rtfPrint');
+const { printRTF, printPDF } = require('./rtfPrint');
 
 
 if (require('electron-squirrel-startup')) {
@@ -114,7 +114,7 @@ ipcMain.on('open-print-qtd-window', (parentWindow, data) => {
     show: false
   });
   printQtdWindow.loadFile(path.join(__dirname, 'print-qtd.html'));
-  
+
   printQtdWindow.once('ready-to-show', () => {
     printQtdWindow.show();
   });
@@ -130,7 +130,8 @@ ipcMain.on('print-chosen', (event, nPrint) => {
 });
 
 async function printReceipt(products, total, nPrint) {
-  await printRTF(products, total, nPrint);
+  //await printRTF(products, total, nPrint);
+  await printPDF(products, total, nPrint);
   const data = moment().format("DD/MM/YYYY HH:mm:ss")
   fs.appendFileSync("registos.csv", products.map(p => `${p.descricao};${p.quantidade};${nPrint};${p.preco};${total};${data}\n`).join(''));
   mainWindow.webContents.send('receipt-printed');
