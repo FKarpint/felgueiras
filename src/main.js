@@ -130,8 +130,8 @@ ipcMain.on('print-chosen', (event, nPrint) => {
 });
 
 async function printReceipt(products, total, nPrint) {
-  //await printRTF(products, total, nPrint);
-  await printPDF(products, total, nPrint);
+  await printRTF(products, total, nPrint);
+  //await printPDF(products, total, nPrint);
   const data = moment().format("DD/MM/YYYY HH:mm:ss")
   fs.appendFileSync("registos.csv", products.map(p => `${p.descricao};${p.quantidade};${nPrint};${p.preco};${total};${data}\n`).join(''));
   mainWindow.webContents.send('receipt-printed');

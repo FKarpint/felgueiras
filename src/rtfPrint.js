@@ -16,24 +16,35 @@ async function printRTF(produtos, total, nPrint) {
 
   let produtosHtml = '';
   for (const produto of produtos) {
+    let qtd = await formatString(produto.quantidade.toString(),4,"right");
+    let preco = await formatString(produto.preco.toString(),6,"right");
+    let descricao = await formatString(produto.descricao.toString(),18,"left");
+
     produtosHtml += `
-      <tr>
-      <td><strong>${produto.quantidade}</strong></td><td>${produto.descricao}</strong></td><td>${produto.preco}</td>
-      <tr>`;
+    <br>
+    <pre>
+    <strong>${qtd}</strong> | ${preco} EUR | ${descricao}
+    </pre>
+    `;
   }
 
   const htmlTemplate = `
     <html>
       <body>
-        <h1>Comissão de Festas de Felgueiras 2024</h1>
-        <img src="data:image/jpeg;base64,${base64Image}" alt="Imagem" />
-        <table border="0">
-        <tr>
-        <td>Qtd</td><td>Descrição</td><td>Preço Un</td>
-        </tr>
+        <strong>Comissão de Festas Sta. Eufémia 2024</strong>
+        <br>
+        Felgueiras - Torre de Moncorvo
+        <br>
+        _________________________________
+        <br>
+        <pre>
+        Qtd | Preço | Descrição        
+        </pre>
         ${produtosHtml}
-        </table>
-        <p><strong>TOTAL: ${total.toFixed(2)}</strong></p>
+        <br>
+        _________________________________
+        <br>
+        <p><strong>TOTAL: ${total.toFixed(2)} EUR</strong></p>
       </body>
     </html>
   `;
@@ -85,7 +96,7 @@ async function printPDF(produtos, total, nPrint) {
   for (const produto of produtos) {
     produtosHtml += `
       <tr>
-        <td><strong>${produto.quantidade}</strong></td><td>${produto.descricao}</td><td>${produto.preco}</td>
+        <td><strong>${produto.quantidade}</strong></td><td>${produto.descricao}</td><td>${produto.preco} €</td>
       </tr>`;
   }
 
@@ -111,7 +122,7 @@ async function printPDF(produtos, total, nPrint) {
         </tr>
         ${produtosHtml}
       </table>
-      <p><strong>TOTAL: ${total.toFixed(2)}</strong></p>
+      <p><strong>TOTAL: ${total.toFixed(2)} €</strong></p>
     </div>
   </body>
 </html>
@@ -155,6 +166,23 @@ async function printPDF(produtos, total, nPrint) {
 function convertImageToBase64(imagePath) {
   const imageBuffer = fs.readFileSync(imagePath);
   return imageBuffer.toString('base64');
+}
+
+async function formatString(inputString, maxLength, alignment) {
+
+  let formattedString = inputString.slice(0, maxLength);
+
+  const spacesNeeded = maxLength - formattedString.length;
+
+  if (alignment === 'left') {
+    formattedString = formattedString + ' '.repeat(spacesNeeded);
+  } else if (alignment === 'right') {
+    formattedString = ' '.repeat(spacesNeeded) + formattedString;
+  } else {
+    throw new Error('Alinhamento deve ser "left" ou "right".');
+  }
+
+  return formattedString;
 }
 
 module.exports = { printRTF, printPDF };
